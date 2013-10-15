@@ -1,6 +1,9 @@
 Chef::Sugar
 ================
 [![Build Status](https://secure.travis-ci.org/sethvargo/chef-sugar.png?branch=master)](http://travis-ci.org/sethvargo/chef-sugar)
+[![Gem Version](https://badge.fury.io/rb/chef-sugar.png)](http://badge.fury.io/rb/chef-sugar)
+[![Dependency Status](https://gemnasium.com/sethvargo/chef-sugar.png)](https://gemnasium.com/sethvargo/chef-sugar)
+[![Code Climate](https://codeclimate.com/github/sethvargo/chef-sugar.png)](https://codeclimate.com/github/sethvargo/chef-sugar)
 
 Chef Sugar is a Gem & Chef Recipe that includes series of helpful sugar of the Chef core and other resources to make a cleaner, more lean recipd DSL, enforce DRY principles, and make writing Chef recipes an awesome experience!
 
