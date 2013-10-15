@@ -1,0 +1,14 @@
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: true
+
+platforms:
+  # - name: ubuntu-10.04
+  # - name: ubuntu-10.10
+  - name: ubuntu-12.04
+  # - name: ubuntu-12.10
+
+suites:
+  - name: install
+    run_list:
+      - recipe[chef-sugar::default]
