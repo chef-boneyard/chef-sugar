@@ -175,6 +175,7 @@ end
 - `arch_linux?`
 - `debian?`
 - `fedora?`
+- `freebsd?`
 - `gentoo?`
 - `linux?`
 - `mac_os_x?`
