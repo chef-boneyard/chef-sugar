@@ -39,6 +39,18 @@ describe Chef::Sugar::PlatformFamily do
     end
   end
 
+  describe '#freebsd?' do
+    it 'returns true when the platform_family is freebsd' do
+      node = { 'platform_family' => 'freebsd' }
+      expect(described_class.freebsd?(node)).to be_true
+    end
+
+    it 'returns false when the platform_family is not freebsd' do
+      node = { 'platform_family' => 'windows' }
+      expect(described_class.freebsd?(node)).to be_false
+    end
+  end
+
   describe '#gentoo?' do
     it 'returns true when the platform_family is gentoo' do
       node = { 'platform_family' => 'gentoo' }

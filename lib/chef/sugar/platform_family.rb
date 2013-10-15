@@ -54,6 +54,17 @@ class Chef
       end
 
       #
+      # Determine if the current node is a member of the freebsd family.
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def freebsd?(node)
+        node['platform_family'] == 'freebsd'
+      end
+
+      #
       # Determine if the current node is a member of the arch family.
       #
       # @param [Chef::Node] node
