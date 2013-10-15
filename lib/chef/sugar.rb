@@ -22,6 +22,7 @@ class Chef
   module Sugar
     require_relative 'sugar/architecture'
     require_relative 'sugar/cloud'
+    require_relative 'sugar/filters'
     require_relative 'sugar/ip'
     require_relative 'sugar/node'
     require_relative 'sugar/platform'

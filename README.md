@@ -238,6 +238,35 @@ http_request 'http://...' do
 end
 ```
 
+### Filters
+- `compile_time` - accepts a block of resources to run at compile time
+- `before` - insert resource in the collection before the given resource
+- `after` - insert resource in the collection after the given resource
+
+#### Examples
+```ruby
+compile_time do
+  package 'apache2'
+end
+
+# This is equivalent to
+package 'apache2' do
+  'apache2'
+end.run_action(:install)
+```
+
+```ruby
+before 'service[apache2]' do
+  log 'I am before the apache 2 service fires!'
+end
+```
+
+```ruby
+after 'service[apache2]' do
+  log 'I am after the apache 2 service fires!'
+end
+```
+
 
 License & Authors
 -----------------
