@@ -1,6 +1,8 @@
 driver_plugin: vagrant
 driver_config:
   require_chef_omnibus: true
+  synced_folders:
+    - ['<%= File.expand_path('..', __FILE__) %>', '/gem']
 
 platforms:
   # - name: ubuntu-10.04
@@ -11,4 +13,4 @@ platforms:
 suites:
   - name: install
     run_list:
-      - recipe[chef-sugar::default]
+      - recipe[chef-sugar::development]
