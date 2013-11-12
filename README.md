@@ -251,7 +251,7 @@ end
 
 # This is equivalent to
 package 'apache2' do
-  'apache2'
+  action :nothing
 end.run_action(:install)
 ```
 
