@@ -105,6 +105,18 @@ class Chef
       end
 
       #
+      # Return true if the current current node is in Cloudstack
+      #
+      # @param [Chef::Node] node
+      #   the node to check
+      #
+      # @return [Boolean]
+      #
+      def cloudstack?(node)
+        node.key?('cloudstack')
+      end
+
+      #
       # Return true if the current current node is in Azure
       #
       # @param [Chef::Node] node
@@ -139,6 +151,9 @@ class Chef
 
       # @see Chef::Sugar::Cloud#openstack?
       def openstack?; Chef::Sugar::Cloud.openstack?(node); end
+
+      # @see Chef::Sugar::Cloud#cloudstack?
+      def cloudstack?; Chef::Sugar::Cloud.cloudstack?(node); end
 
       # @see Chef::Sugar::Cloud#azure?
       def azure?; Chef::Sugar::Cloud.azure?(node); end

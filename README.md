@@ -93,6 +93,7 @@ end
 - `gce?`
 - `linode?`
 - `openstack?`
+- `cloudstack?`
 - `rackspace?`
 
 #### Examples

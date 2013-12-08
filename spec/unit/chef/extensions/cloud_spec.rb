@@ -99,6 +99,18 @@ describe Chef::Sugar::Cloud do
     end
   end
 
+  describe '#cloudstack?' do
+    it 'is true when the node is on cloudstack' do
+      node = { 'cloudstack' => nil }
+      expect(described_class.cloudstack?(node)).to be_true
+    end
+
+    it 'is false when the node is not on cloudstack' do
+      node = {}
+      expect(described_class.cloudstack?(node)).to be_false
+    end
+  end
+
   describe '#azure?' do
     it 'is true when the node is on azure' do
       node = { 'azure' => nil }
