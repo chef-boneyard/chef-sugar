@@ -17,6 +17,7 @@ Gemfile.lock
 .vagrant/
 .vagrant.d/
 bin/
+coverage/
 pkg/
 tmp/
 vendor/

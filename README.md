@@ -1,6 +1,8 @@
 Chef::Sugar
 ================
 [![Build Status](https://secure.travis-ci.org/sethvargo/chef-sugar.png?branch=master)](http://travis-ci.org/sethvargo/chef-sugar)
+[![Coverage
+Status](https://coveralls.io/repos/sethvargo/chef-sugar/badge.png?branch=master)](https://coveralls.io/r/sethvargo/chef-sugar?branch=master)
 [![Gem Version](https://badge.fury.io/rb/chef-sugar.png)](http://badge.fury.io/rb/chef-sugar)
 [![Dependency Status](https://gemnasium.com/sethvargo/chef-sugar.png)](https://gemnasium.com/sethvargo/chef-sugar)
 [![Code Climate](https://codeclimate.com/github/sethvargo/chef-sugar.png)](https://codeclimate.com/github/sethvargo/chef-sugar)

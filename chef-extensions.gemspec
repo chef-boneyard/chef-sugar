@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'chefspec',        '~> 3.0'
   spec.add_development_dependency 'test-kitchen',    '~> 1.0'
   spec.add_development_dependency 'kitchen-vagrant', '~> 0.14'
+  spec.add_development_dependency 'coveralls',       '~> 0.7'
 end
