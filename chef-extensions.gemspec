@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'chef',  '~> 11.0'
   spec.add_development_dependency 'rspec', '~> 2.11'
 
-  spec.add_development_dependency 'chefspec',        '~> 3.0.0.beta'
-  spec.add_development_dependency 'test-kitchen',    '~> 1.0.0.beta'
-  spec.add_development_dependency 'kitchen-vagrant', '~> 0.11'
+  spec.add_development_dependency 'chefspec',        '~> 3.0'
+  spec.add_development_dependency 'test-kitchen',    '~> 1.0'
+  spec.add_development_dependency 'kitchen-vagrant', '~> 0.14'
 end

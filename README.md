@@ -106,6 +106,19 @@ template '/tmp/config' do
 end
 ```
 
+### Data Bag
+- `encrypted_data_bag_item` - a handy DSL method for loading encrypted data bag items the same way you load a regular data bag item; this requires `Chef::Config[:encrypted_data_bag_secret]` is set!
+- `encrypted_data_bag_item_for_environment` - find the data bag entry for the current node's Chef environment.
+
+#### Examples
+```ruby
+encrypted_data_bag_item('accounts', 'hipchat')
+```
+
+```ruby
+encrypted_data_bag_item_for_environment('accounts', 'github')
+```
+
 ### IP
 - `best_ip_for` - determine the best IP address for the given "other" node, preferring local IP addresses over public ones.
 

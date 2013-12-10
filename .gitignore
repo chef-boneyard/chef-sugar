@@ -20,3 +20,4 @@ bin/
 pkg/
 tmp/
 vendor/
+.rspec
