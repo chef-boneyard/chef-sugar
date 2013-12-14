@@ -17,6 +17,18 @@
 class Chef
   module Sugar
     module DataBag
+      class EncryptedDataBagSecretNotGiven < StandardError
+        def initialize
+          super "You did not set your `encrypted_data_bag_secret`! In order " \
+                "to use the `encrypted_data_bag_item` helper, you must load " \
+                "your encrypted data bag secret into the `Chef::Config`. " \
+                "\n\n" \
+                "Alternatively, you can pass the secret key as the last " \
+                "parameter to the method call. For more information, please " \
+                "see http://docs.opscode.com/chef/essentials_data_bags.html#access-from-recipe."
+        end
+      end
+
       extend self
 
       #
@@ -27,12 +39,21 @@ class Chef
       #   the name of the encrypted data bag
       # @param [String] id
       #   the id of the encrypted data bag
+      # @param [String] secret
+      #   the encrypted data bag secret (default's to the +Chef::Config+ value)
       #
       # @return [Hash]
       #
-      def encrypted_data_bag_item(bag, id)
+      def encrypted_data_bag_item(bag, id, secret = nil)
         Chef::Log.debug "Loading encrypted data bag item #{bag}/#{id}"
-        Chef::EncryptedDataBagItem.load(bag, id)
+
+        secret ||= Chef::Config[:encrypted_data_bag_secret]
+
+        if secret
+          Chef::EncryptedDataBagItem.load(bag, id, secret)
+        else
+          raise EncryptedDataBagSecretNotGiven.new
+        end
       end
 
       #
@@ -53,11 +74,13 @@ class Chef
       #   the name of the encrypted data bag
       # @param [String] id
       #   the id of the encrypted data bag
+      # @param [String] secret
+      #   the encrypted data bag secret (default's to the +Chef::Config+ value)
       #
       # @return [Hash]
       #
-      def encrypted_data_bag_item_for_environment(node, bag, id)
-        data = encrypted_data_bag_item(bag, id)
+      def encrypted_data_bag_item_for_environment(node, bag, id, secret = nil)
+        data = encrypted_data_bag_item(bag, id, secret)
 
         if data[node.chef_environment]
           Chef::Log.debug "Using #{node.chef_environment} as the key"
@@ -71,13 +94,13 @@ class Chef
 
     module DSL
       # @see Chef::Sugar::DataBag#encrypted_data_bag_item?
-      def encrypted_data_bag_item(bag, id)
-        Chef::Sugar::DataBag.encrypted_data_bag_item(bag, id)
+      def encrypted_data_bag_item(bag, id, secret = nil)
+        Chef::Sugar::DataBag.encrypted_data_bag_item(bag, id, secret)
       end
 
       # @see Chef::Sugar::DataBag#encrypted_data_bag_item_for_environment?
-      def encrypted_data_bag_item_for_environment(bag, id)
-        Chef::Sugar::DataBag.encrypted_data_bag_item_for_environment(node, bag, id)
+      def encrypted_data_bag_item_for_environment(bag, id, secret = nil)
+        Chef::Sugar::DataBag.encrypted_data_bag_item_for_environment(node, bag, id, secret)
       end
     end
   end

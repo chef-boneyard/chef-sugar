@@ -6,9 +6,28 @@ describe Chef::Sugar::DataBag do
 
     it 'loads the encrypted data bag item' do
       expect(Chef::EncryptedDataBagItem).to receive(:load)
-        .with('accounts', 'github')
+        .with('accounts', 'github', 'secret_key')
 
-      described_class.encrypted_data_bag_item('accounts', 'github')
+      described_class.encrypted_data_bag_item('accounts', 'github', 'secret_key')
+    end
+
+    context 'when Chef::Config is set' do
+      it 'loads the secret key from the Chef::Config' do
+        Chef::Config.stub(:[]).with(:encrypted_data_bag_secret).and_return('B@c0n')
+
+        expect(Chef::EncryptedDataBagItem).to receive(:load)
+          .with('accounts', 'github', 'B@c0n')
+
+        described_class.encrypted_data_bag_item('accounts', 'github')
+      end
+    end
+
+    context 'when Chef::Config is not set and no value is given' do
+      it 'raises an exception' do
+        expect {
+          described_class.encrypted_data_bag_item('accounts', 'github')
+        }.to raise_error(Chef::Sugar::DataBag::EncryptedDataBagSecretNotGiven)
+      end
     end
   end
 
@@ -24,7 +43,7 @@ describe Chef::Sugar::DataBag do
           }
         )
 
-        expect(described_class.encrypted_data_bag_item_for_environment(node, 'accounts', 'github')).to eq(
+        expect(described_class.encrypted_data_bag_item_for_environment(node, 'accounts', 'github', 'secret_key')).to eq(
           'password' => 'bacon',
           'username' => 'sethvargo',
         )
@@ -44,7 +63,7 @@ describe Chef::Sugar::DataBag do
           }
         )
 
-        expect(described_class.encrypted_data_bag_item_for_environment(node, 'accounts', 'github')).to eq(
+        expect(described_class.encrypted_data_bag_item_for_environment(node, 'accounts', 'github', 'secret_key')).to eq(
           'password' => 'ham',
           'username' => 'schisamo',
         )
