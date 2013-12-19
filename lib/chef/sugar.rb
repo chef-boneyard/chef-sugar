@@ -25,6 +25,7 @@ class Chef
     require_relative 'sugar/data_bag'
     require_relative 'sugar/filters'
     require_relative 'sugar/ip'
+    require_relative 'sugar/kernel'
     require_relative 'sugar/node'
     require_relative 'sugar/platform'
     require_relative 'sugar/platform_family'
@@ -38,3 +39,5 @@ end
 Chef::Recipe.send(:include, Chef::Sugar::DSL)
 Chef::Resource.send(:include, Chef::Sugar::DSL)
 Chef::Provider.send(:include, Chef::Sugar::DSL)
+
+Object.send(:include, Chef::Sugar::Kernel)

@@ -121,6 +121,30 @@ encrypted_data_bag_item('accounts', 'hipchat')
 encrypted_data_bag_item_for_environment('accounts', 'github')
 ```
 
+### Kernel
+- `require_chef_gem` - "safely" require a gem. Loading a gem with Chef is sometimes difficult and confusing. The errors that Chef produces are also sometimes not very intuitive. In the event you require a gem to exist on the system, you can use `require_chef_gem`, which wil attempt to require the gem and then produce helpful output if the gem is not installed:
+
+        Chef could not load the gem `#{name}'! You may need to install the gem
+        manually with `gem install #{name}', or include a recipe before you can
+        use this resource. Please consult the documentation for this cookbook
+        for proper usage.
+
+#### Examples
+```ruby
+# LWRP
+require_chef_gem 'pry'
+```
+
+```ruby
+class Chef
+  class Provider
+    class MyProvider > Provider
+      require_chef_gem 'pry'
+    end
+  end
+end
+```
+
 ### IP
 - `best_ip_for` - determine the best IP address for the given "other" node, preferring local IP addresses over public ones.
 
