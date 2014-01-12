@@ -28,6 +28,42 @@ describe Chef::Node do
     end
   end
 
+  describe '#deep_fetch' do
+    let(:node) { described_class.new }
+    before { node.default['apache2']['config']['root'] = '/var/www' }
+
+    it 'fetches a deeply nested attribute' do
+      expect(node.deep_fetch('apache2', 'config', 'root')).to eq('/var/www')
+    end
+
+    it 'ignores symbols, strings, etc' do
+      expect(node.deep_fetch(:apache2, :config, :root)).to eq('/var/www')
+    end
+
+    it 'safely returns nil if a key does not exist' do
+      expect(node.deep_fetch(:apache2, :not_real, :nested, :yup)).to be_nil
+    end
+  end
+
+  describe '#deep_fetch!' do
+    let(:node) { described_class.new }
+    before { node.default['apache2']['config']['root'] = '/var/www' }
+
+    it 'fetches a deeply nested attribute' do
+      expect(node.deep_fetch!('apache2', 'config', 'root')).to eq('/var/www')
+    end
+
+    it 'ignores symbols, strings, etc' do
+      expect(node.deep_fetch!(:apache2, :config, :root)).to eq('/var/www')
+    end
+
+    it 'raises an error if a key does not exist' do
+      expect {
+        node.deep_fetch!(:apache2, :not_real, :nested, :yup)
+      }.to raise_error(Chef::Node::AttributeDoesNotExistError)
+    end
+  end
+
   describe '#namespace' do
     let(:node) { described_class.new }
 

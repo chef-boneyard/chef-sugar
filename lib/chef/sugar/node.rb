@@ -16,6 +16,16 @@
 
 class Chef
   class Node
+    class AttributeDoesNotExistError < StandardError
+      def initialize(keys)
+        hash = keys.map { |key| "['#{key}']" }
+
+        super <<-EOH
+No attribute `node#{hash.join}' exists on
+the current node. Please make sure you have spelled everything correctly.
+EOH
+      end
+    end
     #
     # Determine if the current node is in the given Chef environment
     # (or matches the given regular expression).
@@ -37,6 +47,47 @@ class Chef
       run_list.include?(recipe_name)
     end
     alias_method :include_recipe?, :includes_recipe?
+
+    #
+    # Safely fetch a deeply nested attribute by specifying a list of keys,
+    # bypassing Ruby's Hash notation. This method swallows +NoMethodError+
+    # exceptions, avoiding the most common error in Chef-land.
+    #
+    # This method will return +nil+ if any deeply nested key does not exist.
+    #
+    # @see [Node#deep_fetch!]
+    #
+    def deep_fetch(*keys)
+      deep_fetch!(*keys)
+    rescue NoMethodError, AttributeDoesNotExistError
+      nil
+    end
+
+    #
+    # Deeply fetch a node attribute by specifying a list of keys, bypassing
+    # Ruby's Hash notation.
+    #
+    # This method will raise any exceptions, such as
+    # +undefined method `[]' for nil:NilClass+, just as if you used the native
+    # attribute notation. If you want a safely vivified hash, see {deep_fetch}.
+    #
+    # @example Fetch a deeply nested key
+    #   node.deep_fetch(:foo, :bar, :zip) #=> node['foo']['bar']['zip']
+    #
+    # @param [Array<String, Symbol>] keys
+    #   the list of keys to kdeep fetch
+    #
+    # @return [Object]
+    #
+    def deep_fetch!(*keys)
+      keys.map!(&:to_s)
+
+      keys.inject(attributes.to_hash) do |hash, key|
+        hash[key]
+      end
+    rescue NoMethodError
+      raise AttributeDoesNotExistError.new(keys)
+    end
 
     #
     # Dynamically define the current namespace. Multiple namespaces may be
