@@ -19,10 +19,11 @@ class Chef
     module Kernel
       class ChefGemLoadError < StandardError
         def initialize(name)
-          super "Chef could not load the gem `#{name}'! You may need " \
-                "to install the gem manually with `gem install #{name}', or " \
-                "include a recipe before you can use this resource. Please " \
-                "consult the documentation for this cookbook for proper usage."
+          super <<-EOH
+Chef could not load the gem `#{name}'! You may need to install the gem manually
+with `gem install #{name}', or include a recipe before you can use this
+resource. Please consult the documentation for this cookbook for proper usage.
+EOH
         end
       end
 

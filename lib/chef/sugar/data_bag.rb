@@ -19,13 +19,15 @@ class Chef
     module DataBag
       class EncryptedDataBagSecretNotGiven < StandardError
         def initialize
-          super "You did not set your `encrypted_data_bag_secret`! In order " \
-                "to use the `encrypted_data_bag_item` helper, you must load " \
-                "your encrypted data bag secret into the `Chef::Config`. " \
-                "\n\n" \
-                "Alternatively, you can pass the secret key as the last " \
-                "parameter to the method call. For more information, please " \
-                "see http://docs.opscode.com/chef/essentials_data_bags.html#access-from-recipe."
+          super <<-EOH
+You did not set your `encrypted_data_bag_secret'! In order to use the
+`encrypted_data_bag_item' helper, you must load your encrypted data bag secret
+into the `Chef::Config'.
+
+Alternatively, you can pass the secret key as the last parameter to the method
+call. For more information, please see
+http://docs.opscode.com/chef/essentials_data_bags.html#access-from-recipe.
+EOH
         end
       end
 
