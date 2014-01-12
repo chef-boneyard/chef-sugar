@@ -16,8 +16,10 @@ Gemfile.lock
 .kitchen/
 .vagrant/
 .vagrant.d/
+.yardoc/
 bin/
 coverage/
+doc/
 pkg/
 tmp/
 vendor/
