@@ -43,6 +43,7 @@ Requiring the Chef Sugar Gem will automatically extend the Recipe DSL, `Chef::Re
 If you are working outside of the Recipe DSL, you can use the module methods instead of the Recipe DSL. In general, the module methods have the same name as their Recipe-DSL counterparts, but require the node object as a parameter. For example:
 
 In a Recipe:
+
 ```ruby
 # cookbook/recipes/default.rb
 do_something if windows?
