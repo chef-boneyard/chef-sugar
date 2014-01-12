@@ -121,6 +121,34 @@ encrypted_data_bag_item('accounts', 'hipchat')
 encrypted_data_bag_item_for_environment('accounts', 'github')
 ```
 
+### Attributes
+Chef Sugar adds more Chef-like DSL to attribute definitions. Instead of using the Ruby hash syntax, you can define attributes using nested namespaces. This DSL may be more friendly to non-Ruby developers. It can safely be mixed-and-matched with the standard syntax.
+
+```ruby
+# This is functionally the same as default['apache2']['config']['root'] = '/var/www'
+namespace 'apache2' do
+  namespace 'config' do
+    root '/var/www'
+  end
+end
+```
+
+```ruby
+# Specify multiple keys instead of nesting namespaces
+namespace 'apache2', 'config' do
+  root '/var/www'
+end
+```
+
+```ruby
+# Specify different nested precedence levels
+namespace 'apache2', precedence: normal do
+  namespace 'config', precedence: override do
+    root '/var/www' #=> override['apache2']['config']['root'] = '/var/www'
+  end
+end
+```
+
 ### Kernel
 - `require_chef_gem` - "safely" require a gem. Loading a gem with Chef is sometimes difficult and confusing. The errors that Chef produces are also sometimes not very intuitive. In the event you require a gem to exist on the system, you can use `require_chef_gem`, which wil attempt to require the gem and then produce helpful output if the gem is not installed:
 

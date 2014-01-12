@@ -37,5 +37,110 @@ class Chef
       run_list.include?(recipe_name)
     end
     alias_method :include_recipe?, :includes_recipe?
+
+    #
+    # Dynamically define the current namespace. Multiple namespaces may be
+    # nested.
+    #
+    # @example Define a simple namespace
+    #
+    #   namespace 'apache2' do
+    #     # ...
+    #   end
+    #
+    # @example Define a nested namespace
+    #
+    #   namespace 'apache2', 'config' do
+    #     # ...
+    #   end
+    #
+    # @example Define a complex nested namespace
+    #
+    #   namespace 'apache2' do
+    #     namespace 'config' do
+    #       # ...
+    #     end
+    #   end
+    #
+    # @example Define a namespace with a custom precedence level
+    #
+    #   namespace 'apache2', precedence: normal do
+    #     # Attributes here will use the "normal" level
+    #   end
+    #
+    # @example Define different nested precedence levels
+    #
+    #   namespace 'apache2', precedence: normal do
+    #     # Attributes defined here will use the "normal" level
+    #
+    #     namespace 'config', precedence: override do
+    #       # Attributes defined  here will use the "override" level
+    #     end
+    #   end
+    #
+    #
+    # @param [Array] args
+    #   the list of arguments (such as the namespace and precedence levels)
+    #   the user gave
+    # @param [Proc] block
+    #   the nested evaluation context
+    #
+    # @return [nil]
+    #   to prevent accidential method chaining if the block isn't closed
+    #
+    def namespace(*args, &block)
+      @namespace_options = {
+        precedence: default
+      }.merge(args.last.is_a?(Hash) ? args.pop : {})
+
+      keys = args.map(&:to_s)
+
+      @current_namespace = current_namespace + keys
+      instance_eval(&block)
+      @current_namespace = current_namespace - keys
+
+      nil
+    end
+
+    alias_method :old_method_missing, :method_missing
+    #
+    # Provide a nice DSL for defining attributes. +method_missing+ is called
+    # on all the attribute names. For more information on how to use the DSL,
+    # see the class-level documentation.
+    #
+    # @return [nil]
+    #   to prevent accidential method chaining if the block isn't closed
+    #
+    def method_missing(m, *args, &block)
+      old_method_missing(m, *args, &block)
+    rescue NoMethodError
+      vivified[m.to_s] = args.size == 1 ? args.first : args
+      nil
+    end
+
+    private
+
+    #
+    # The current namespace. This is actually a reverse-ordered array that
+    # vivifies the correct hash.#
+    #
+    # @return [Array<String>]
+    #
+    def current_namespace
+      @current_namespace ||= []
+    end
+
+    #
+    # The vivified (fake-filled) hash. It is assumed that the default value
+    # for non-existent keys in the hash is a new, empty hash.
+    #
+    # @return [Hash<String, Hash>]
+    #
+    def vivified
+      current_namespace.inject(@namespace_options[:precedence]) do |hash, item|
+        hash[item] ||= {}
+        hash[item]
+      end
+    end
   end
 end
