@@ -150,6 +150,35 @@ namespace 'apache2', precedence: normal do
 end
 ```
 
+### Constraints
+- `constaints` - create a new contraint (or requirement) that can be used to test version validations.
+- `chef_version` - (DSL only) a wrapper for `version(Chef::VERSION)`
+- `version` - create a new version that can be used to test constraint validation.
+
+#### Examples
+```ruby
+# Check if a version is satisfied by a constraint
+version('1.2.3').satisfies?('~> 1.2.0')
+```
+
+```ruby
+# Check if a constraint is satisfied by a version
+constraint('~> 1.2.0').satisfied_by?('1.2.3')
+```
+
+```ruby
+# Support multiple constraints
+version('1.2.3').satisfies?('> 1.2', '< 2.0')
+constraint('> 1.2', '< 2.0').satisfied_by?('1.2.3')
+```
+
+```ruby
+# Only perform an operation if Chef is at a certain version
+package 'apache2' do
+  not_if { chef_version.satisfies?('~> 11.0') } # Ignore Chef 11
+end
+```
+
 ### Kernel
 - `require_chef_gem` - "safely" require a gem. Loading a gem with Chef is sometimes difficult and confusing. The errors that Chef produces are also sometimes not very intuitive. In the event you require a gem to exist on the system, you can use `require_chef_gem`, which wil attempt to require the gem and then produce helpful output if the gem is not installed:
 

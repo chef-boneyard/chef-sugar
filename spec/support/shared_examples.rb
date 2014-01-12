@@ -8,7 +8,7 @@ module RSpec
 
     described_class.instance_methods.each do |name|
       it "defines a `#{name}` DSL method" do
-        expect(Chef::Sugar::DSL.instance_methods).to include(name)
+        expect(Chef::Sugar::DSL).to be_method_defined(name)
       end
 
       it 'has n-1 arity from the parent method' do
