@@ -219,7 +219,7 @@ end
 
 ### Node
 - `deep_fetch` - safely fetch a nested attribute.
-- `deep_fetch` - fetch a nested attribute, raising a more semantic error if the key does not exist.
+- `deep_fetch!` - fetch a nested attribute, raising a more semantic error if the key does not exist.
 - `in?` - determine if the node is in the given Chef environment.
 - `includes_recipe?`
 
