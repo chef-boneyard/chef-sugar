@@ -13,7 +13,8 @@ describe Chef::Sugar::DataBag do
 
     context 'when Chef::Config is set' do
       it 'loads the secret key from the Chef::Config' do
-        Chef::Config.stub(:[]).with(:encrypted_data_bag_secret).and_return('B@c0n')
+        Chef::Config.stub(:[]).with(:encrypted_data_bag_secret).and_return('/data/path')
+        File.stub(:read).with('/data/path').and_return('B@c0n')
 
         expect(Chef::EncryptedDataBagItem).to receive(:load)
           .with('accounts', 'github', 'B@c0n')

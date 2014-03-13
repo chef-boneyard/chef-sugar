@@ -42,20 +42,19 @@ EOH
       # @param [String] id
       #   the id of the encrypted data bag
       # @param [String] secret
-      #   the encrypted data bag secret (default's to the +Chef::Config+ value)
+      #   the encrypted data bag secret raw value
       #
       # @return [Hash]
       #
       def encrypted_data_bag_item(bag, id, secret = nil)
         Chef::Log.debug "Loading encrypted data bag item #{bag}/#{id}"
 
-        secret ||= Chef::Config[:encrypted_data_bag_secret]
-
-        if secret
-          Chef::EncryptedDataBagItem.load(bag, id, secret)
-        else
+        if secret.nil? && Chef::Config[:encrypted_data_bag_secret].nil?
           raise EncryptedDataBagSecretNotGiven.new
         end
+
+        secret ||= File.read(Chef::Config[:encrypted_data_bag_secret])
+        Chef::EncryptedDataBagItem.load(bag, id, secret)
       end
 
       #
@@ -95,12 +94,12 @@ EOH
     end
 
     module DSL
-      # @see Chef::Sugar::DataBag#encrypted_data_bag_item?
+      # @see Chef::Sugar::DataBag#encrypted_data_bag_item
       def encrypted_data_bag_item(bag, id, secret = nil)
         Chef::Sugar::DataBag.encrypted_data_bag_item(bag, id, secret)
       end
 
-      # @see Chef::Sugar::DataBag#encrypted_data_bag_item_for_environment?
+      # @see Chef::Sugar::DataBag#encrypted_data_bag_item_for_environment
       def encrypted_data_bag_item_for_environment(bag, id, secret = nil)
         Chef::Sugar::DataBag.encrypted_data_bag_item_for_environment(node, bag, id, secret)
       end
