@@ -2,6 +2,10 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v1.2.2 (2014-03-13)
+-------------------
+- Fix a critical bug with `encrypted_data_bag_item` using the wrong key
+
 v1.2.0 (2014-03-09)
 -------------------
 - Add `namespace` functionality for specifying attributes in a DSL
