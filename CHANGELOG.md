@@ -2,6 +2,10 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v1.2.4 (2014-03-13)
+-------------------
+- See (1.2.2), but I botched the release
+
 v1.2.2 (2014-03-13)
 -------------------
 - Fix a critical bug with `encrypted_data_bag_item` using the wrong key
