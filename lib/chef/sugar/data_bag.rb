@@ -53,7 +53,7 @@ EOH
           raise EncryptedDataBagSecretNotGiven.new
         end
 
-        secret ||= File.read(Chef::Config[:encrypted_data_bag_secret])
+        secret ||= File.read(Chef::Config[:encrypted_data_bag_secret]).strip
         Chef::EncryptedDataBagItem.load(bag, id, secret)
       end
 
