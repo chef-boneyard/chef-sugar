@@ -2,6 +2,11 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v1.2.6 (2014-03-16)
+-------------------
+- Fix a bug in `vagrant?` returning false on newer Vagrant versions
+- Remove Coveralls
+
 v1.2.4 (2014-03-13)
 -------------------
 - See (1.2.2), but I botched the release
