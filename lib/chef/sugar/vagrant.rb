@@ -29,7 +29,43 @@ class Chef
       #   otherwise
       #
       def vagrant?(node)
+        vagrant_key?(node) || vagrant_domain?(node) || vagrant_user?(node)
+      end
+
+      private
+
+      #
+      # Check if the +vagrant+ key exists on the +node+ object. This key is no
+      # longer populated by vagrant, but it is kept around for legacy purposes.
+      #
+      # @param (see vagrant?)
+      # @return (see vagrant?)
+      #
+      def vagrant_key?(node)
         node.key?('vagrant')
+      end
+
+      #
+      # Check if "vagrantup.com" is included in the node's domain. Technically,
+      # this would make Chef Sugar falsely detect +vagrant?+ on any of
+      # Hashicorp's servers. But if that edge case becomes a serious problem,
+      # @mitchellh has my phone number.
+      #
+      # @param (see vagrant?)
+      # @return (see vagrant?)
+      #
+      def vagrant_domain?(node)
+        node['domain'] && node['domain'].include?('vagrantup.com')
+      end
+
+      #
+      # Check if the system contains a +vagrant+ user.
+      #
+      # @param (see vagrant?)
+      # @return (see vagrant?)
+      #
+      def vagrant_user?(node)
+        node['etc'] && node['etc']['passwd'] && node['etc']['passwd']['vagrant']
       end
     end
 
