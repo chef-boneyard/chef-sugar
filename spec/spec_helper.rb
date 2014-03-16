@@ -1,6 +1,3 @@
-require 'coveralls'
-Coveralls.wear!
-
 require 'rspec'
 require 'chefspec'
 require 'chef/sugar'
