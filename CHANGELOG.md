@@ -2,6 +2,10 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+vx.y.z (not yet released)
+-------------------------
+- Check both `$stdout` and `$stderr` in `version_for`
+
 v1.2.6 (2014-03-16)
 -------------------
 - Fix a bug in `vagrant?` returning false on newer Vagrant versions

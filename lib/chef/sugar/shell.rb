@@ -93,7 +93,8 @@ class Chef
       #
       # Assumptions:
       #   1. The command exists.
-      #   2. The command outputs version information to +$stdout+.
+      #   2. The command outputs version information to +$stdout+ or +$stderr+.
+      #      Did you know that java outputs its version to $stderr?
       #
       #
       # @param [String] cmd
@@ -102,13 +103,13 @@ class Chef
       #   the flag to use to get the version
       #
       # @return [String]
-      #   the output of the version command
+      #   the entire output of the version command (stderr and stdout)
       #
       def version_for(cmd, flag = '--version')
         cmd = Mixlib::ShellOut.new("#{cmd} #{flag}")
         cmd.run_command
         cmd.error!
-        cmd.stdout.strip
+        [cmd.stdout.strip, cmd.stderr.strip].join("\n")
       end
     end
 

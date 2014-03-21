@@ -71,12 +71,16 @@ describe Chef::Sugar::Shell do
   end
 
   describe '#version_for' do
-    let(:shell_out) { double('shell_out', run_command: nil, error!: nil, stdout: '1.2.3') }
+    let(:shell_out) { double('shell_out', run_command: nil, error!: nil, stdout: '1.2.3', stderr: 'Oh no!') }
     before { Mixlib::ShellOut.stub(:new).and_return(shell_out) }
 
     it 'runs the thing in shellout' do
       expect(Mixlib::ShellOut).to receive(:new).with('mongo --version')
       described_class.version_for('mongo')
+    end
+
+    it 'returns the combined stdout and stderr' do
+      expect(described_class.version_for('mongo')).to eq("1.2.3\nOh no!")
     end
   end
 end
