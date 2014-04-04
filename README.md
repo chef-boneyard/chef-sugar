@@ -1,9 +1,16 @@
 Chef::Sugar
 ================
-[![Build Status](https://secure.travis-ci.org/sethvargo/chef-sugar.png?branch=master)](http://travis-ci.org/sethvargo/chef-sugar)
-[![Gem Version](https://badge.fury.io/rb/chef-sugar.png)](http://badge.fury.io/rb/chef-sugar)
-[![Dependency Status](https://gemnasium.com/sethvargo/chef-sugar.png)](https://gemnasium.com/sethvargo/chef-sugar)
-[![Code Climate](https://codeclimate.com/github/sethvargo/chef-sugar.png)](https://codeclimate.com/github/sethvargo/chef-sugar)
+[![Gem Version](http://img.shields.io/gem/v/chef-sugar.svg)][gem]
+[![Build Status](http://img.shields.io/travis/sethvargo/chef-sugar.svg)][travis]
+[![Dependency Status](http://img.shields.io/gemnasium/sethvargo/chef-sugar.svg)][gemnasium]
+[![Code Climate](http://img.shields.io/codeclimate/github/sethvargo/chef-sugar.svg)][codeclimate]
+[![Gittip](http://img.shields.io/gittip/sethvargo.svg)][gittip]
+
+[gem]: https://rubygems.org/gems/chef-sugar
+[travis]: http://travis-ci.org/sethvargo/chef-suguar
+[gemnasium]: https://gemnasium.com/sethvargo/chef-sugar
+[codeclimate]: https://codeclimate.com/githubsethvargo/chef-sugar
+[gittip]: https://www.gittip.com/sethvargo
 
 Chef Sugar is a Gem & Chef Recipe that includes series of helpful sugar of the Chef core and other resources to make a cleaner, more lean recipd DSL, enforce DRY principles, and make writing Chef recipes an awesome experience!
 
