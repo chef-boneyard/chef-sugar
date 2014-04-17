@@ -9,15 +9,15 @@ Chef::Sugar
 [gem]: https://rubygems.org/gems/chef-sugar
 [travis]: http://travis-ci.org/sethvargo/chef-suguar
 [gemnasium]: https://gemnasium.com/sethvargo/chef-sugar
-[codeclimate]: https://codeclimate.com/githubsethvargo/chef-sugar
+[codeclimate]: https://codeclimate.com/github/sethvargo/chef-sugar
 [gittip]: https://www.gittip.com/sethvargo
 
-Chef Sugar is a Gem & Chef Recipe that includes series of helpful sugar of the Chef core and other resources to make a cleaner, more lean recipd DSL, enforce DRY principles, and make writing Chef recipes an awesome experience!
+Chef Sugar is a Gem & Chef Recipe that includes series of helpful sugar of the Chef core and other resources to make a cleaner, more lean recipe DSL, enforce DRY principles, and make writing Chef recipes an awesome experience!
 
 
 Installation
 ------------
-If you want to development/hack on chef-sugar, please see the Contributing.md.
+If you want to develop/hack on chef-sugar, please see the Contributing.md.
 
 If you are using Berkshelf, add `chef-sugar` to your `Berksfile`:
 
