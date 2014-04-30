@@ -15,11 +15,17 @@ class Chef
 
         def method_missing(m, *args, &block)
           resource = @recipe.send(m, *args, &block)
-          actions  = Array(resource.action)
-          resource.action(:nothing)
-          actions.each do |action|
-            resource.run_action(action)
+
+          if resource.is_a?(Chef::Resource)
+            actions = Array(resource.action)
+            resource.action(:nothing)
+
+            actions.each do |action|
+              resource.run_action(action)
+            end
           end
+
+          resource
         end
       end
 
