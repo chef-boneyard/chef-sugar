@@ -25,7 +25,7 @@ class Chef
       # @param [String] recipe_name
       #
       def includes_recipe?(node, recipe_name)
-        node.run_list.include?(recipe_name)
+        node.recipe?(recipe_name)
       end
       alias_method :include_recipe?, :includes_recipe?
     end

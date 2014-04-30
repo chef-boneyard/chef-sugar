@@ -7,16 +7,13 @@ describe Chef::Sugar::RunContext do
     let(:node) { double(Chef::Node) }
 
     it 'returns true when the recipe exists' do
-      node.stub(:run_list).and_return(['recipe[magic::recipe]'])
-      included = described_class.includes_recipe?(node, 'recipe[magic::recipe]')
-      expect(included).to be_true
+      node.stub(:recipe?).and_return(true)
+      expect(described_class.includes_recipe?(node, 'foo')).to be_true
     end
 
-    it 'returns false when the recipe does
-     not exist' do
-      node.stub(:run_list).and_return([])
-      included = described_class.includes_recipe?(node, 'recipe[magic::recipe]')
-      expect(included).to be_false
+    it 'returns false when the recipe does not exist' do
+      node.stub(:recipe?).and_return(false)
+      expect(described_class.includes_recipe?(node, 'bar')).to be_false
     end
   end
 end
