@@ -31,6 +31,7 @@ class Chef
     require_relative 'sugar/platform'
     require_relative 'sugar/platform_family'
     require_relative 'sugar/ruby'
+    require_relative 'sugar/run_context'
     require_relative 'sugar/shell'
     require_relative 'sugar/vagrant'
     require_relative 'sugar/version'

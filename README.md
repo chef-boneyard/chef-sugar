@@ -226,7 +226,6 @@ end
 - `deep_fetch` - safely fetch a nested attribute.
 - `deep_fetch!` - fetch a nested attribute, raising a more semantic error if the key does not exist.
 - `in?` - determine if the node is in the given Chef environment.
-- `includes_recipe?`
 
 #### Examples
 ```ruby
@@ -235,14 +234,6 @@ credentials = if in?('production')
               else
                 data_bag('...')
               end
-```
-
-```ruby
-if includes_recipe?('apache2::default')
-  apache_module 'my_module' do
-    # ...
-  end
-end
 ```
 
 ```ruby
@@ -312,6 +303,17 @@ node['attribute'] = if windows?
 #### Examples
 ```ruby
 log 'This has been known to fail on Ruby 2.0' if ruby_20?
+```
+
+### Run Context
+- `includes_recipe?` - determines if the current run context includes the recipe
+
+```ruby
+if includes_recipe?('apache2::default')
+  apache_module 'my_module' do
+    # ...
+  end
+end
 ```
 
 ### Shell

@@ -15,19 +15,6 @@ describe Chef::Node do
     end
   end
 
-  describe '#includes_recipe?' do
-    it 'returns true when the recipe exists' do
-      subject.stub(:run_list).and_return(['recipe[magic::recipe]'])
-      expect(subject.includes_recipe?('recipe[magic::recipe]')).to be_true
-    end
-
-    it 'returns false when the recipe does
-     not exist' do
-      subject.stub(:run_list).and_return([])
-      expect(subject.includes_recipe?('recipe[magic::recipe]')).to be_false
-    end
-  end
-
   describe '#deep_fetch' do
     let(:node) { described_class.new }
     before { node.default['apache2']['config']['root'] = '/var/www' }

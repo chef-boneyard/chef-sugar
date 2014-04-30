@@ -39,16 +39,6 @@ EOH
     end
 
     #
-    # Determine if the current node includes the given recipe name.
-    #
-    # @param [String] recipe_name
-    #
-    def includes_recipe?(recipe_name)
-      run_list.include?(recipe_name)
-    end
-    alias_method :include_recipe?, :includes_recipe?
-
-    #
     # Safely fetch a deeply nested attribute by specifying a list of keys,
     # bypassing Ruby's Hash notation. This method swallows +NoMethodError+
     # exceptions, avoiding the most common error in Chef-land.
