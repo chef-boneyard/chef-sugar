@@ -114,6 +114,31 @@ template '/tmp/config' do
 end
 ```
 
+### Core Extensions
+**Note:** Core extensions are **not** included by default. You must require the `chef/sugar/core_extensions` module manually to gain access to these APIs:
+
+```ruby
+require 'chef/sugar/core_extensions'
+```
+
+- `String#satisfies?`
+- `String#satisfied_by?`
+- `Array#satisfied_by?`
+- `Object#blank?`
+
+#### Examples
+```ruby
+# Checking version constraints
+'1.0.0'.satisfies?('~> 1.0') #=> true
+'~> 1.0'.satisfied_by?('1.0') #=> true
+```
+
+```ruby
+# Check for an object's presence
+''.blank? #=> true
+['hello'].blank? #=> false
+```
+
 ### Data Bag
 - `encrypted_data_bag_item` - a handy DSL method for loading encrypted data bag items the same way you load a regular data bag item; this requires `Chef::Config[:encrypted_data_bag_secret]` is set!
 - `encrypted_data_bag_item_for_environment` - find the data bag entry for the current node's Chef environment.

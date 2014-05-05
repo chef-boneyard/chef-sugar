@@ -14,6 +14,14 @@
 # limitations under the License.
 #
 
-require_relative 'core_extensions/array'
-require_relative 'core_extensions/string'
-require_relative 'core_extensions/object'
+class Object
+  # An object is blank if it's false, empty, or a whitespace string.
+  # This is implemented in rails.
+  #
+  # @example foo.nil? || foo.empty? can be replaced by foo.blank?
+  #
+  # @return [true, false]
+  def blank?
+    respond_to?(:empty?) ? empty? : !self
+  end unless method_defined?(:blank?)
+end
