@@ -2,7 +2,7 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
-vx.y.z (not yet released)
+v1.3.0 (2014-05-05)
 -------------------------
 - Check both `$stdout` and `$stderr` in `version_for`
 - Add additional platform versions
