@@ -197,5 +197,29 @@ describe Chef::Sugar::Platform do
         expect(described_class.ubuntu_before_or_at_lucid?(node)).to be_true
       end
     end
+
+    describe '#debian_wheezy?' do
+      it 'returns true when the version is a subset of the major' do
+        node = { 'platform' => 'debian', 'platform_version' => '7.1' }
+        expect(described_class.debian_wheezy?(node)).to be_true
+      end
+
+      it 'returns false when the version is not the major' do
+        node = { 'platform' => 'debian', 'platform_version' => '6.1' }
+        expect(described_class.debian_wheezy?(node)).to be_false
+      end
+    end
+
+    describe '#debian_before_wheezy?' do
+      it 'returns true when the version is a less than the major' do
+        node = { 'platform' => 'debian', 'platform_version' => '6.5' }
+        expect(described_class.debian_before_wheezy?(node)).to be_true
+      end
+
+      it 'returns false when the version is not less than the major' do
+        node = { 'platform' => 'debian', 'platform_version' => '8.0' }
+        expect(described_class.debian_before_wheezy?(node)).to be_false
+      end
+    end
   end
 end

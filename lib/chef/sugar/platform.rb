@@ -21,9 +21,9 @@ class Chef
 
       PLATFORM_VERSIONS = {
         'debian' => {
-          'squeeze' => '6.0',
-          'wheezy'  => '7.0',
-          'jessie'  => '8.0',
+          'squeeze' => '6',
+          'wheezy'  => '7',
+          'jessie'  => '8',
         },
         'linuxmint' => {
           'petra'  => '16',
@@ -66,9 +66,14 @@ class Chef
           COMPARISON_OPERATORS.each do |operator, block|
             method_name = "#{platform}_#{operator}_#{name}?".squeeze('_').to_sym
             define_method(method_name) do |node|
+              # Find the highest precedence that we actually care about based
+              # off of what was given to us in the list.
+              length = version.split('.').size
+              check  = node['platform_version'].split('.')[0...length].join('.')
+
               # Calling #to_f will ensure we only check major versions since
               # '10.04.4'.to_f #=> 10.04.
-              node['platform'] == platform && block.call(node['platform_version'].to_f, version.to_f)
+              node['platform'] == platform && block.call(check.to_f, version.to_f)
             end
           end
         end
