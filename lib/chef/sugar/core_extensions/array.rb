@@ -30,5 +30,5 @@ class Array
   #
   def satisfied_by?(version)
     Chef::Sugar::Constraints::Constraint.new(*dup).satisfied_by?(version)
-  end
+  end unless method_defined?(:satisfied_by?)
 end

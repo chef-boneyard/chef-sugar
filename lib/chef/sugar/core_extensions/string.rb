@@ -30,7 +30,7 @@ class String
   #
   def satisfies?(*constraints)
     Chef::Sugar::Constraints::Version.new(dup).satisfies?(*constraints)
-  end
+  end unless method_defined?(:satisfies?)
 
   #
   # Treat strings as version constraints.
@@ -45,5 +45,6 @@ class String
   #
   def satisfied_by?(version)
     Chef::Sugar::Constraints::Constraint.new(dup).satisfied_by?(version)
+  end unless method_defined?(:satisfied_by?)
   end
 end
