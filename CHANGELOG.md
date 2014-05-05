@@ -5,7 +5,12 @@ This file is used to list changes made in each version of the chef-sugar cookboo
 vx.y.z (not yet released)
 -------------------------
 - Check both `$stdout` and `$stderr` in `version_for`
--
+- Add additional platform versions
+- Make `includes_recipe?` a top-level API (instead of just Node)
+- Match on the highest version number instead of direct equality checking on platform versions
+- Define `Object#blank?` as a core extension
+- Define `String#flush` as a core extension
+- Remove Stove
 
 v1.2.6 (2014-03-16)
 -------------------
