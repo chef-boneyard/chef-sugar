@@ -42,7 +42,7 @@ include_recipe 'chef-sugar::default'
 
 Alternatively you can put it in a base role or recipe and it will be included subsequently.
 
-Requiring the Chef Sugar Gem will automatically extend the Recipe DSL, `Chef::Resource`, and `Chef::Provider` with helpful convienence methods.
+Requiring the Chef Sugar Gem will automatically extend the Recipe DSL, `Chef::Resource`, and `Chef::Provider` with helpful convenience methods.
 
 ### Module Method
 If you are working outside of the Recipe DSL, you can use the module methods instead of the Recipe DSL. In general, the module methods have the same name as their Recipe-DSL counterparts, but require the node object as a parameter. For example:
@@ -181,7 +181,7 @@ end
 ```
 
 ### Constraints
-- `constaints` - create a new contraint (or requirement) that can be used to test version validations.
+- `constraints` - create a new constraint (or requirement) that can be used to test version validations.
 - `chef_version` - (DSL only) a wrapper for `version(Chef::VERSION)`
 - `version` - create a new version that can be used to test constraint validation.
 
@@ -210,7 +210,7 @@ end
 ```
 
 ### Kernel
-- `require_chef_gem` - "safely" require a gem. Loading a gem with Chef is sometimes difficult and confusing. The errors that Chef produces are also sometimes not very intuitive. In the event you require a gem to exist on the system, you can use `require_chef_gem`, which wil attempt to require the gem and then produce helpful output if the gem is not installed:
+- `require_chef_gem` - "safely" require a gem. Loading a gem with Chef is sometimes difficult and confusing. The errors that Chef produces are also sometimes not very intuitive. In the event you require a gem to exist on the system, you can use `require_chef_gem`, which will attempt to require the gem and then produce helpful output if the gem is not installed:
 
         Chef could not load the gem `#{name}'! You may need to install the gem
         manually with `gem install #{name}', or include a recipe before you can
@@ -320,7 +320,7 @@ node['attribute'] = if windows?
 ```
 
 ### Ruby
-**Note:** The applies to the the Ruby found at `node['languages']['ruby']`.
+**Note:** The applies to the Ruby found at `node['languages']['ruby']`.
 
 - `ruby_20?`
 - `ruby_19?`
