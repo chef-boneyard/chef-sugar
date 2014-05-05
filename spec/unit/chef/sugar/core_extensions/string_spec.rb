@@ -31,7 +31,7 @@ describe String do
             "This is a string!"
           end
         EOH
-        expect(string.flush).to eq(%Q{def method\n  "This is a string!"\nend})
+        expect(string.flush).to eq(%Q(def method\n  "This is a string!"\nend))
       end
 
       it 'leaves a newline when given' do
@@ -41,7 +41,7 @@ describe String do
           end
 
         EOH
-        expect(string.flush).to eq(%Q{def method\n  "This is a string!"\nend\n})
+        expect(string.flush).to eq(%Q(def method\n  "This is a string!"\nend\n))
       end
     end
   end
