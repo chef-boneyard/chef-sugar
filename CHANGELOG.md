@@ -5,6 +5,7 @@ This file is used to list changes made in each version of the chef-sugar cookboo
 vx.y.z (not yet released)
 -------------------------
 - Check both `$stdout` and `$stderr` in `version_for`
+-
 
 v1.2.6 (2014-03-16)
 -------------------
