@@ -46,5 +46,21 @@ class String
   def satisfied_by?(version)
     Chef::Sugar::Constraints::Constraint.new(dup).satisfied_by?(version)
   end unless method_defined?(:satisfied_by?)
-  end
+
+  #
+  # Left-flush a string based off of the number of whitespace characters on the
+  # first line. This is especially useful for heredocs when whitespace matters.
+  #
+  # @example Remove leading whitespace and flush
+  #   <<-EOH.flush
+  #     def method
+  #       'This is a string!'
+  #     end
+  #   EOH #=>"def method\n  'This is a string!'\nend"
+  #
+  # @return [String]
+  #
+  def flush
+    gsub(/^#{self[/\A\s*/]}/, '').chomp
+  end unless method_defined?(:flush)
 end
