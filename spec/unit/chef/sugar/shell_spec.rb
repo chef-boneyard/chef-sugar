@@ -28,8 +28,8 @@ describe Chef::Sugar::Shell do
 
   describe '#installed?' do
     it 'returns true if the given binary exists' do
-      File.stub(:which).and_return(false)
-      File.stub(:which).with('/usr/bin/mongo').and_return(true)
+      described_class.stub(:which).and_return(nil)
+      described_class.stub(:which).with('mongo').and_return(true)
       expect(described_class.installed?('mongo')).to be_true
     end
 
