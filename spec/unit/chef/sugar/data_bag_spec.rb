@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Chef::Sugar::DataBag do
   describe '#encrypted_data_bag_item' do
-    before { Chef::EncryptedDataBagItem.stub(:load) }
+    before { allow(Chef::EncryptedDataBagItem).to receive(:load) }
 
     it 'loads the encrypted data bag item' do
       expect(Chef::EncryptedDataBagItem).to receive(:load)
@@ -13,8 +13,8 @@ describe Chef::Sugar::DataBag do
 
     context 'when Chef::Config is set' do
       it 'loads the secret key from the Chef::Config' do
-        Chef::Config.stub(:[]).with(:encrypted_data_bag_secret).and_return('/data/path')
-        File.stub(:read).with('/data/path').and_return('B@c0n')
+        allow(Chef::Config).to receive(:[]).with(:encrypted_data_bag_secret).and_return('/data/path')
+        allow(File).to receive(:read).with('/data/path').and_return('B@c0n')
 
         expect(Chef::EncryptedDataBagItem).to receive(:load)
           .with('accounts', 'github', 'B@c0n')
@@ -37,7 +37,7 @@ describe Chef::Sugar::DataBag do
 
     context 'when the environment exists' do
       it 'loads the data from the environment' do
-        Chef::EncryptedDataBagItem.stub(:load).and_return(
+        allow(Chef::EncryptedDataBagItem).to receive(:load).and_return(
           'production' => {
             'username' => 'sethvargo',
             'password' => 'bacon',
@@ -53,7 +53,7 @@ describe Chef::Sugar::DataBag do
 
     context 'when the environment does not exist' do
       it 'loads the data from the default bucket' do
-        Chef::EncryptedDataBagItem.stub(:load).and_return(
+        allow(Chef::EncryptedDataBagItem).to receive(:load).and_return(
           'staging' => {
             'username' => 'sethvargo',
             'password' => 'bacon',

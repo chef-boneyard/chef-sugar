@@ -9,8 +9,8 @@ describe Chef::Sugar::Kernel do
     end
 
     it 'loads the gem' do
-      Chef::Sugar::Kernel.stub(:require).and_return(true)
-      expect(described_class.require_chef_gem('bacon')).to be_true
+      allow(Chef::Sugar::Kernel).to receive(:require).and_return(true)
+      expect(described_class.require_chef_gem('bacon')).to be_truthy
     end
   end
 end

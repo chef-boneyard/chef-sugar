@@ -3,15 +3,15 @@ require 'spec_helper'
 describe Chef::Node do
   describe '#in?' do
     it 'returns true when the node is in the environment' do
-      subject.stub(:chef_environment).and_return('production')
-      expect(subject.in?('production')).to be_true
-      expect(subject.in?(/production$/)).to be_true
+      allow(subject).to receive(:chef_environment).and_return('production')
+      expect(subject.in?('production')).to be_truthy
+      expect(subject.in?(/production$/)).to be_truthy
     end
 
     it 'returns false when the node is not in the environment' do
-      subject.stub(:chef_environment).and_return('staging')
-      expect(subject.in?('production')).to be_false
-      expect(subject.in?(/production$/)).to be_false
+      allow(subject).to receive(:chef_environment).and_return('staging')
+      expect(subject.in?('production')).to be_falsey
+      expect(subject.in?(/production$/)).to be_falsey
     end
   end
 
