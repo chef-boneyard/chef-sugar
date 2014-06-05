@@ -36,6 +36,7 @@ class Chef
           'lion'          => '10.7',
           'mountain_lion' => '10.8',
           'mavericks'     => '10.9',
+          'yosemite'      => '10.10',
         },
         'ubuntu' => {
           'lucid'    => '10.04',
