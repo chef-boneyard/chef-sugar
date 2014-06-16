@@ -136,14 +136,29 @@ describe Chef::Sugar::PlatformFamily do
   end
 
   describe '#linux?' do
-    it 'returns true when the platform_family is linux-based' do
+    it 'returns true when the platform_family is Debian' do
       node = { 'platform_family' => 'debian' }
-      expect(described_class.debian?(node)).to be_truthy
+      expect(described_class.linux?(node)).to be_truthy
     end
 
-    it 'returns false when the platform_family is not linux-based' do
+    it 'returns true when the platform_family is RedHat' do
+      node = { 'platform_family' => 'rhel' }
+      expect(described_class.linux?(node)).to be_truthy
+    end
+
+    it 'returns false when the platform_family is Windows' do
       node = { 'platform_family' => 'windows' }
-      expect(described_class.debian?(node)).to be_falsey
+      expect(described_class.linux?(node)).to be_falsey
+    end
+
+    it 'returns false when the platform_family is OSX' do
+      node = { 'platform_family' => 'mac_os_x' }
+      expect(described_class.linux?(node)).to be_falsey
+    end
+
+    it 'returns false when the platform_family is OpenBSD' do
+      node = { 'platform_family' => 'openbsd' }
+      expect(described_class.linux?(node)).to be_falsey
     end
   end
 end
