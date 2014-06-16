@@ -2,8 +2,22 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.0.0 (2014-06-16)
+-------------------
+### Breaking
+- Remove `not_linux?` method
+- Remove `not_windows?` method
+
+### Improvements
+- Miscellaneous spelling fixes
+- Update a failing unit test for `installed?`
+- Add Mac OS X to the list of platforms (Yosemite)
+- Upgrade to RSpec 3
+- Fix `which` (and `installed?` and `installed_at_version?`) when given an absolute path
+- Fix `linux?` check to only return true on real linuxes
+
 v1.3.0 (2014-05-05)
--------------------------
+-------------------
 - Check both `$stdout` and `$stderr` in `version_for`
 - Add additional platform versions
 - Make `includes_recipe?` a top-level API (instead of just Node)
