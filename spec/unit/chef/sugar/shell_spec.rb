@@ -12,6 +12,18 @@ describe Chef::Sugar::Shell do
       allow(File).to receive(:executable?).and_return(false)
       expect(described_class.which('node')).to be_nil
     end
+
+    context 'with an absolute path' do
+      it 'returns the executable if it exists' do
+        allow(File).to receive(:executable?).with('/usr/local/bin/bash').and_return(true)
+        expect(described_class.which('/usr/local/bin/bash')).to eq('/usr/local/bin/bash')
+      end
+
+      it 'returns nil when the file is not executable' do
+        allow(File).to receive(:executable?).with('/usr/local/bin/bash').and_return(false)
+        expect(described_class.which('/usr/local/bin/bash')).to be_nil
+      end
+    end
   end
 
   describe '#dev_null' do
