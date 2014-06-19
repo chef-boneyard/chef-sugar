@@ -161,6 +161,30 @@ class Chef
         node['platform'] == 'enterprise'
       end
       alias_method :redhat_enterprise?, :redhat_enterprise_linux?
+
+      #
+      # Determine if the current node is solaris2
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def solaris2?(node)
+        node['platform'] == 'solaris2'
+      end
+      alias_method :solaris?, :solaris2?
+
+      #
+      # Determine if the current node is aix
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def aix?(node)
+        node['platform'] == 'aix'
+      end
+
     end
 
     module DSL

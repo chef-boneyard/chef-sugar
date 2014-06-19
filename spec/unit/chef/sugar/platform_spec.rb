@@ -87,6 +87,30 @@ describe Chef::Sugar::Platform do
     end
   end
 
+  describe '#solaris2?' do
+    it 'returns true when the platform is solaris2' do
+      node = { 'platform' => 'solaris2' }
+      expect(described_class.solaris2?(node)).to be_truthy
+    end
+
+    it 'returns false when the platform is not solaris2' do
+      node = { 'platform' => 'windows' }
+      expect(described_class.solaris2?(node)).to be_falsey
+    end
+  end
+
+  describe '#aix?' do
+    it 'returns true when the platform is aix' do
+      node = { 'platform' => 'aix' }
+      expect(described_class.aix?(node)).to be_truthy
+    end
+
+    it 'returns false when the platform is not aix' do
+      node = { 'platform' => 'windows' }
+      expect(described_class.aix?(node)).to be_falsey
+    end
+  end
+
   context 'dynamic matchers' do
     describe '#ubuntu_after_lucid?' do
       it 'returns true when the version is later than 10.04' do

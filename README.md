@@ -273,6 +273,8 @@ node.deep_fetch('apache2', 'config', 'root') => node['apache2']['config']['root'
 - `redhat_enterprise_linux?`
 - `scientific_linux?`
 - `ubuntu?`
+- `solaris2?`
+- `aix?`
 
 There are also a series of dynamically defined matchers that map named operating system release versions and comparison operators in the form "#{platform}\_#{operator}\_#{name}?". For example:
 
