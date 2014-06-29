@@ -130,9 +130,7 @@ EOH
     #   to prevent accidential method chaining if the block isn't closed
     #
     def namespace(*args, &block)
-      @namespace_options = {
-        precedence: default
-      }.merge(args.last.is_a?(Hash) ? args.pop : {})
+      @namespace_options = namespace_options.merge(args.last.is_a?(Hash) ? args.pop : {})
 
       keys = args.map(&:to_s)
 
@@ -162,6 +160,17 @@ EOH
     private
 
     #
+    # The namespace options.
+    #
+    # @return [Hash]
+    #
+    def namespace_options
+      @namespace_options ||= {
+        precedence: default
+      }
+    end
+
+    #
     # The current namespace. This is actually a reverse-ordered array that
     # vivifies the correct hash.#
     #
@@ -178,7 +187,7 @@ EOH
     # @return [Hash<String, Hash>]
     #
     def vivified
-      current_namespace.inject(@namespace_options[:precedence]) do |hash, item|
+      current_namespace.inject(namespace_options[:precedence]) do |hash, item|
         hash[item] ||= {}
         hash[item]
       end
