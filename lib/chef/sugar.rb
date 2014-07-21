@@ -35,6 +35,7 @@ class Chef
     require_relative 'sugar/shell'
     require_relative 'sugar/vagrant'
     require_relative 'sugar/version'
+    require_relative 'sugar/virtualization'
   end
 end
 

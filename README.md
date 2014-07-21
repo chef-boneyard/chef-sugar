@@ -376,6 +376,17 @@ http_request 'http://...' do
 end
 ```
 
+### Virtualization
+- `lxc?`
+
+#### Examples
+```ruby
+service 'ntpd' do
+  action [:enable, :start]
+  not_if { lxc? }
+end
+```
+
 ### Filters
 - `compile_time` - accepts a block of resources to run at compile time
 - `before` - insert resource in the collection before the given resource
