@@ -2,6 +2,16 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.1.0 (2014-06-26)
+-------------------
+### Improvements
+- Add `solaris2?` matcher
+- Add `aix?` matcher
+- Add 'lxc?' matcher
+
+### Bug Fixes
+- Fix a bug in namespace memoization during attribute initialization
+
 v2.0.0 (2014-06-16)
 -------------------
 ### Breaking
