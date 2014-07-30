@@ -26,6 +26,7 @@ class Chef
           'jessie'  => '8',
         },
         'linuxmint' => {
+          'qiana'  => '17',
           'petra'  => '16',
           'olivia' => '15',
           'nadia'  => '14',
