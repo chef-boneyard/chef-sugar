@@ -2,6 +2,12 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.2.0 (2014-08-20)
+-------------------
+### Improvements
+- Add `smartos?` matcher
+- Add `omnios?` matcher
+
 v2.1.0 (2014-06-26)
 -------------------
 ### Improvements
