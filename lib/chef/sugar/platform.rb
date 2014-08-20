@@ -197,6 +197,16 @@ class Chef
         node['platform'] == 'smartos'
       end
 
+      #
+      # Determine if the current node is omnios
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def omnios?(node)
+        node['platform'] == 'omnios'
+      end
     end
 
     module DSL
