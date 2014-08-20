@@ -111,6 +111,18 @@ describe Chef::Sugar::Platform do
     end
   end
 
+  describe '#smartos?' do
+    it 'returns true when the platform is smartos' do
+      node = { 'platform' => 'smartos' }
+      expect(described_class.smartos?(node)).to be_truthy
+    end
+
+    it 'returns false when the platform is not smartos' do
+      node = { 'platform' => 'windows' }
+      expect(described_class.smartos?(node)).to be_falsey
+    end
+  end
+
   context 'dynamic matchers' do
     describe '#ubuntu_after_lucid?' do
       it 'returns true when the version is later than 10.04' do

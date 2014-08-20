@@ -186,6 +186,17 @@ class Chef
         node['platform'] == 'aix'
       end
 
+      #
+      # Determine if the current node is smartos
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def smartos?(node)
+        node['platform'] == 'smartos'
+      end
+
     end
 
     module DSL
