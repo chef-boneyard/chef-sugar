@@ -380,7 +380,6 @@ end
 
 ### Virtualization
 - `lxc?`
-- `vmware?`
 
 #### Examples
 ```ruby
