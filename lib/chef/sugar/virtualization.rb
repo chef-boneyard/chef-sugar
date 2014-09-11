@@ -31,11 +31,28 @@ class Chef
       def lxc?(node)
         node['virtualization'] && node['virtualization']['system'] == 'lxc'
       end
+	  
+	  #
+      # Determine if the current node is running under VMWare.
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #   true if the machine is currently running under VMware, false
+      #   otherwise
+      #
+      def vmware?(node)
+        node['virtualization'] && node['virtualization']['system'] == 'vmware'
+      end
+
     end
 
     module DSL
       # @see Chef::Sugar::Virtualization#lxc?
       def lxc?; Chef::Sugar::Virtualization.lxc?(node); end
+	  
+	  # @see Chef::Sugar::Virtualization#vmware?
+      def vmware?; Chef::Sugar::Virtualization.vmware?(node); end
     end
   end
 end
