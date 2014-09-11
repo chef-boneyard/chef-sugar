@@ -19,4 +19,21 @@ describe Chef::Sugar::Virtualization do
       expect(described_class.lxc?(node)).to be_falsey
     end
   end
+  
+  describe '#vmware?' do
+    it 'returns true when the machine is under vmware' do
+      node = { 'virtualization' => { 'system' => 'vmware' } }
+      expect(described_class.vmware?(node)).to be_truthy
+    end
+
+    it 'returns false when the virtual machine is not under vmware' do
+      node = { 'virtualization' => { 'system' => 'vbox' } }
+      expect(described_class.vmware?(node)).to be_falsey
+    end
+
+    it 'returns false when the machine is not virtual' do
+      node = {}
+      expect(described_class.vmware?(node)).to be_falsey
+    end
+  end
 end
