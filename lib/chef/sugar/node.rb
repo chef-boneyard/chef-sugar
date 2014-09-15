@@ -153,8 +153,12 @@ EOH
     def method_missing(m, *args, &block)
       old_method_missing(m, *args, &block)
     rescue NoMethodError
-      vivified[m.to_s] = args.size == 1 ? args.first : args
-      nil
+      if args.size > 0
+        vivified[m.to_s] = args.size == 1 ? args.first : args
+        return nil
+      else
+        return deep_fetch *(current_namespace + [m.to_s])
+      end
     end
 
     private

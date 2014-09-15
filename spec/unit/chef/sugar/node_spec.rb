@@ -99,6 +99,20 @@ describe Chef::Node do
         }
       })
     end
+
+    it 'can access attributes within itself' do
+      attribute = ''
+      node.instance_eval do
+        namespace 'apache2' do
+          namespace 'config' do
+            root '/var/www'
+            attribute = root
+          end
+        end
+      end
+      # Had to do this outside of the namespace to get access to the expect method of the RSpec object
+      expect(attribute).to eq '/var/www'
+    end
   end
 
 end
