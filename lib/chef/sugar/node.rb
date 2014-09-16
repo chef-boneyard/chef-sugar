@@ -149,12 +149,23 @@ EOH
     #
     # @return [nil]
     #   to prevent accidential method chaining if the block isn't closed
+    # @return [Object]
+    #   If no argument is passed in, method becomes an attribute accessor
     #
     def method_missing(m, *args, &block)
       old_method_missing(m, *args, &block)
     rescue NoMethodError
-      vivified[m.to_s] = args.size == 1 ? args.first : args
-      nil
+      # The Node Attribute's key is the method name
+      key = m.to_s
+      # If arguments are passed in, set node attribute with args as the value
+      if args.size > 0
+        vivified[key] = args.size == 1 ? args.first : args
+        return nil
+      # If no arguments are passed in, attempt to access corresponding attribute
+      else
+        deep_key = current_namespace.dup << key
+        return deep_fetch!(*deep_key)
+      end
     end
 
     private

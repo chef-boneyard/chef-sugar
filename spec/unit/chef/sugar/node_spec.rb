@@ -99,6 +99,26 @@ describe Chef::Node do
         }
       })
     end
+
+    it 'can access attributes within itself' do
+      node.instance_eval do
+        namespace 'apache2' do
+          namespace 'config' do
+            root '/var/www'
+            ssl File.join(root, 'ssl')
+          end
+        end
+      end
+
+      expect(node.default).to eq({
+        'apache2' => {
+          'config' => {
+            'root' => '/var/www',
+            'ssl' => '/var/www/ssl',
+          }
+        }
+      })
+    end
   end
 
 end
