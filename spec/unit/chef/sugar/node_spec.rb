@@ -108,13 +108,13 @@ describe Chef::Node do
             ssl File.join(root, 'ssl')
           end
         end
-          end
+      end
 
       expect(node.default).to eq({
         'apache2' => {
           'config' => {
             'root' => '/var/www',
-            'ssl' => '/var/www/ssl'
+            'ssl' => '/var/www/ssl',
           }
         }
       })
