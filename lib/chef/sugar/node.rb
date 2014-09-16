@@ -157,7 +157,7 @@ EOH
         vivified[m.to_s] = args.size == 1 ? args.first : args
         return nil
       else
-        return deep_fetch *(current_namespace + [m.to_s])
+        return deep_fetch! *(current_namespace + [m.to_s])
       end
     end
 
