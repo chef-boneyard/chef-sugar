@@ -4,14 +4,14 @@ describe Chef::Node do
   describe '#in?' do
     it 'returns true when the node is in the environment' do
       allow(subject).to receive(:chef_environment).and_return('production')
-      expect(subject.in?('production')).to be_truthy
-      expect(subject.in?(/production$/)).to be_truthy
+      expect(subject.in?('production')).to be true
+      expect(subject.in?(/production$/)).to be true
     end
 
     it 'returns false when the node is not in the environment' do
       allow(subject).to receive(:chef_environment).and_return('staging')
-      expect(subject.in?('production')).to be_falsey
-      expect(subject.in?(/production$/)).to be_falsey
+      expect(subject.in?('production')).to be false
+      expect(subject.in?(/production$/)).to be false
     end
   end
 

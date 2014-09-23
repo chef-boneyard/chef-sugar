@@ -8,12 +8,12 @@ describe Chef::Sugar::RunContext do
 
     it 'returns true when the recipe exists' do
       allow(node).to receive(:recipe?).and_return(true)
-      expect(described_class.includes_recipe?(node, 'foo')).to be_truthy
+      expect(described_class.includes_recipe?(node, 'foo')).to be true
     end
 
     it 'returns false when the recipe does not exist' do
       allow(node).to receive(:recipe?).and_return(false)
-      expect(described_class.includes_recipe?(node, 'bar')).to be_falsey
+      expect(described_class.includes_recipe?(node, 'bar')).to be false
     end
   end
 end

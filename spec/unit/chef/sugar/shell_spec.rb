@@ -42,12 +42,12 @@ describe Chef::Sugar::Shell do
     it 'returns true if the given binary exists' do
       allow(described_class).to receive(:which).and_return(nil)
       allow(described_class).to receive(:which).with('mongo').and_return(true)
-      expect(described_class.installed?('mongo')).to be_truthy
+      expect(described_class.installed?('mongo')).to be true
     end
 
     it 'returns false if the given binary does not exist' do
       allow(File).to receive(:executable?).and_return(false)
-      expect(described_class.installed?('node')).to be_falsey
+      expect(described_class.installed?('node')).to be false
     end
   end
 
@@ -55,30 +55,30 @@ describe Chef::Sugar::Shell do
     it 'returns true if the command is installed at the correct version' do
       allow(described_class).to receive(:which).and_return(true)
       allow(described_class).to receive(:version_for).and_return('1.2.3')
-      expect(described_class.installed_at_version?('mongo', '1.2.3')).to be_truthy
+      expect(described_class.installed_at_version?('mongo', '1.2.3')).to be true
     end
 
     it 'returns true if the command is installed at the correct version and has additional output' do
       allow(described_class).to receive(:which).and_return(true)
       allow(described_class).to receive(:version_for).and_return('Mongo DB version 1.2.3. Some other text.')
-      expect(described_class.installed_at_version?('mongo', '1.2.3')).to be_truthy
+      expect(described_class.installed_at_version?('mongo', '1.2.3')).to be true
     end
 
     it 'returns true if the command is installed at the correct version with a regex' do
       allow(described_class).to receive(:which).and_return(true)
       allow(described_class).to receive(:version_for).and_return('1.2.3')
-      expect(described_class.installed_at_version?('mongo', /1\.2/)).to be_truthy
+      expect(described_class.installed_at_version?('mongo', /1\.2/)).to be true
     end
 
     it 'returns false if the command is installed at the wrong version' do
       allow(described_class).to receive(:which).and_return(true)
       allow(described_class).to receive(:version_for).and_return('1.2.3')
-      expect(described_class.installed_at_version?('mongo', '4.5.6')).to be_falsey
+      expect(described_class.installed_at_version?('mongo', '4.5.6')).to be false
     end
 
     it 'returns false if the command is not installed' do
       allow(described_class).to receive(:which).and_return(nil)
-      expect(described_class.installed_at_version?('mongo', '1.0.0')).to be_falsey
+      expect(described_class.installed_at_version?('mongo', '1.0.0')).to be false
     end
   end
 

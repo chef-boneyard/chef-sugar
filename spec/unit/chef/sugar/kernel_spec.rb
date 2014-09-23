@@ -10,7 +10,7 @@ describe Chef::Sugar::Kernel do
 
     it 'loads the gem' do
       allow(Chef::Sugar::Kernel).to receive(:require).and_return(true)
-      expect(described_class.require_chef_gem('bacon')).to be_truthy
+      expect(described_class.require_chef_gem('bacon')).to be true
     end
   end
 end
