@@ -29,9 +29,9 @@ class Chef
       #   otherwise
       #
       def lxc?(node)
-        node['virtualization'] && node['virtualization']['system'] == 'lxc'
+        node.key?('virtualization') && node['virtualization']['system'] == 'lxc'
       end
-	  
+
       #
       # Determine if the current node is running under VMware.
       #
@@ -42,7 +42,7 @@ class Chef
       #   otherwise
       #
       def vmware?(node)
-        node['virtualization'] && node['virtualization']['system'] == 'vmware'
+        node.key?('virtualization') && node['virtualization']['system'] == 'vmware'
       end
     end
 

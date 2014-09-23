@@ -83,11 +83,13 @@ class Chef
       #   otherwise
       #
       def installed_at_version?(cmd, version, flag = '--version')
-        which(cmd) && if version.is_a?(Regexp)
-                        version_for(cmd, flag) =~ version
-                      else
-                        version_for(cmd, flag).include?(version)
-                      end
+        !!(which(cmd) &&
+          if version.is_a?(Regexp)
+            version_for(cmd, flag) =~ version
+          else
+            version_for(cmd, flag).include?(version)
+          end
+          )
       end
 
       #
