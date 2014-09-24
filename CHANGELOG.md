@@ -2,6 +2,15 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.3.0 (2014-09-24)
+-------------------
+### Improvements
+- Add `vmware?` matcher
+- Allow the attribute DSL to access parent attributes
+
+### Bug Fixes
+- Return `true` or `false` from all Boolean methods (instead of `nil` or truthy values)
+
 v2.2.0 (2014-08-20)
 -------------------
 ### Improvements
