@@ -25,7 +25,8 @@ class Chef
       # @return [Boolean]
       #
       def _64_bit?(node)
-        node['kernel']['machine'] == 'x86_64'
+        %w(x86_64 ppc64 s390x IA64 sparc64 aarch64 arch64 arm64)
+          .include?(node['kernel']['machine'])
       end
 
       #
