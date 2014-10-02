@@ -4,9 +4,11 @@ describe Chef::Sugar::Architecture do
   it_behaves_like 'a chef sugar'
 
   describe '#_64_bit?' do
-    it 'returns true when the system is 64 bit' do
-      node = { 'kernel' => { 'machine' => 'x86_64' } }
-      expect(described_class._64_bit?(node)).to be true
+    %w(x86_64 ppc64 s390x IA64 sparc64 aarch64 arch64 arm64).each do |arch|
+      it "returns true when the system is #{arch}" do
+        node = { 'kernel' => { 'machine' => arch } }
+        expect(described_class._64_bit?(node)).to be true
+      end
     end
 
     it 'returns false when the system is not 64 bit' do
