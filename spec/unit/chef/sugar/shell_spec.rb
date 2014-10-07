@@ -76,6 +76,12 @@ describe Chef::Sugar::Shell do
       expect(described_class.installed_at_version?('mongo', '4.5.6')).to be false
     end
 
+    it 'returns false if #version_for is nil' do
+      allow(described_class).to receive(:which).and_return(true)
+      allow(described_class).to receive(:version_for).and_return(nil)
+      expect(described_class.installed_at_version?('mongo', '4.5.6')).to be false
+    end
+
     it 'returns false if the command is not installed' do
       allow(described_class).to receive(:which).and_return(nil)
       expect(described_class.installed_at_version?('mongo', '1.0.0')).to be false

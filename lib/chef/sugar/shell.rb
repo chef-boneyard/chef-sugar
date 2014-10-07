@@ -73,7 +73,7 @@ class Chef
       #
       # @param [String] cmd
       #   the command to check
-      # @param [String] version
+      # @param [String] expected_version
       #   the version to check
       # @param [String] flag
       #   the flag to use to check the version of the binary
@@ -82,13 +82,17 @@ class Chef
       #   true if the command exists and is at the given version, false
       #   otherwise
       #
-      def installed_at_version?(cmd, version, flag = '--version')
-        installed?(cmd) &&
-          if version.is_a?(Regexp)
-            !version_for(cmd, flag).match(version).nil?
-          else
-            version_for(cmd, flag).include?(version)
-          end
+      def installed_at_version?(cmd, expected_version, flag = '--version')
+        return false if !installed?(cmd)
+
+        version = version_for(cmd, flag)
+        return false if version.nil?
+
+        if expected_version.is_a?(Regexp)
+          !version.match(expected_version).nil?
+        else
+          version.include?(expected_version)
+        end
       end
 
       #
