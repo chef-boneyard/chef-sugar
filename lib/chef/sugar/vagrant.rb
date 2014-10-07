@@ -55,7 +55,7 @@ class Chef
       # @return (see vagrant?)
       #
       def vagrant_domain?(node)
-        node.key?('domain') && node['domain'].include?('vagrantup.com')
+        node.key?('domain') && !node['domain'].nil? && node['domain'].include?('vagrantup.com')
       end
 
       #
@@ -65,7 +65,7 @@ class Chef
       # @return (see vagrant?)
       #
       def vagrant_user?(node)
-        node.key?('etc') && node['etc'].key?('passwd') && !!node['etc']['passwd']['vagrant']
+        node.key?('etc') && node['etc'].key?('passwd') && node['etc']['passwd'].key?('vagrant')
       end
     end
 
