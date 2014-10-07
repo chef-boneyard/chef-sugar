@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Chef::Sugar::Architecture do
   it_behaves_like 'a chef sugar'
 
-  _64_bit_machines = %w(x86_64 ppc64 s390x ia64 sparc64 aarch64 arch64 arm64)
+  _64_bit_machines = %w(amd64 x86_64 ppc64 s390x ia64 sparc64 aarch64 arch64 arm64)
 
   describe '#_64_bit?' do
     _64_bit_machines.each do |arch|
