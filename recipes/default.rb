@@ -18,7 +18,7 @@
 #
 
 chef_gem('chef-sugar') do
-  version '2.3.0'
+  version '2.3.1'
   action  :nothing
 end.run_action(:install)
 

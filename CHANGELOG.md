@@ -2,6 +2,15 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.3.1 (2014-10-07)
+-------------------
+### Improvements
+- Check all 64-bit architectures that may be reported by Ohai
+
+### Bug Fixes
+- Be more tolerant of `nil` values return from sub functions
+- Check to make sure `node['domain']` is not `nil` before calling `#include?`
+
 v2.3.0 (2014-09-24)
 -------------------
 ### Improvements
