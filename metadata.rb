@@ -14,4 +14,4 @@ For the most up-to-date information and documentation, please visit the [Chef
 Sugar project page on GitHub](https://github.com/sethvargo/chef-sugar).
 EOH
 
-version          '2.3.1'
+version          '2.3.2'

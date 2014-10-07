@@ -2,6 +2,11 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.3.2 (2014-10-07)
+-------------------
+### Big Fixues
+- Include `amd64` in `_64_bit?` check
+
 v2.3.1 (2014-10-07)
 -------------------
 ### Improvements
