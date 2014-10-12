@@ -153,15 +153,14 @@ encrypted_data_bag_item_for_environment('accounts', 'github')
 ```
 
 ### Docker
-Chef Sugar looks for hints to see if the node being converged is a docker container.
-Waiting on feature improvements to ohai to support checking other nodes.
+Chef Sugar looks for hints to see if the node being converged is a Docker container. When [Ohai supports checking other nodes](https://github.com/opscode/ohai/pull/428), Chef Sugar will automatically pick up the information.
+
 - `docker?`
 
 #### Examples
 ```ruby
 template '/runme' do
-  # Set foreground to true if running in a Docker Container.
-  onlyif { docker?(node) }
+  only_if { docker?(node) }
 end
 ```
 

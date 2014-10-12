@@ -20,9 +20,7 @@ class Chef
       extend self
 
       #
-      # Return true if the current node is a docker container.
-      # Once https://github.com/opscode/ohai/pull/428 is available
-      # we can use ohai data and look at other nodes.
+      # Returns true if the current node is a docker container.
       #
       # @param [Chef::Node] node
       #   the node to check
@@ -30,7 +28,7 @@ class Chef
       # @return [Boolean]
       #
       def docker?(node)
-        File.exist?('/.dockerinit') || File.exist?('/.dockerenv') 
+        File.exist?('/.dockerinit') || File.exist?('/.dockerenv')
       end
     end
 
