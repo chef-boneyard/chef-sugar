@@ -2,6 +2,11 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.4.0 (2014-10-12)
+-------------------
+### Improvements
+- Add `docker?` matcher
+
 v2.3.2 (2014-10-07)
 -------------------
 ### Big Fixues
