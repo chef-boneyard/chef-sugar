@@ -14,5 +14,5 @@ For the most up-to-date information and documentation, please visit the [Chef
 Sugar project page on GitHub](https://github.com/sethvargo/chef-sugar).
 EOH
 
-require_relative 'lib/chef/sugar/version'
+require          File.expand_path('../lib/chef/sugar/version', __FILE__)
 version          Chef::Sugar::VERSION
