@@ -2,6 +2,10 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.4.1 (2014-10-12)
+-------------------
+- No changes from v2.4.0 - forced a new version upload to the Chef Supermarket
+
 v2.4.0 (2014-10-12)
 -------------------
 ### Improvements
