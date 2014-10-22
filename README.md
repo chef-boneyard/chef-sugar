@@ -258,13 +258,16 @@ end
 ```
 
 ### Node
+
+Additional methods for the `node` object
+
 - `deep_fetch` - safely fetch a nested attribute.
 - `deep_fetch!` - fetch a nested attribute, raising a more semantic error if the key does not exist.
 - `in?` - determine if the node is in the given Chef environment.
 
 #### Examples
 ```ruby
-credentials = if in?('production')
+credentials = if node.in?('production')
                 Chef::EncryptedDataBag.new('...')
               else
                 data_bag('...')
