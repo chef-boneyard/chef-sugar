@@ -73,10 +73,12 @@ EOH
       keys.map!(&:to_s)
 
       keys.inject(attributes.to_hash) do |hash, key|
-        hash[key]
+        if hash.key?(key)
+          hash[key]
+        else
+          raise AttributeDoesNotExistError.new(keys)
+        end
       end
-    rescue NoMethodError
-      raise AttributeDoesNotExistError.new(keys)
     end
 
     #
