@@ -46,7 +46,7 @@ describe Chef::Node do
 
     it 'raises an error if a key does not exist' do
       expect {
-        node.deep_fetch!(:apache2, :not_real, :nested, :yup)
+        node.deep_fetch!(:apache2, :not_real)
       }.to raise_error(Chef::Node::AttributeDoesNotExistError)
     end
   end
