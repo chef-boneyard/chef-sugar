@@ -91,6 +91,39 @@ EOH
           data['default']
         end
       end
+
+      #
+      # This algorithm attempts to find the data bag entry for the current
+      # node's Chef environment. If there are no environment-specific
+      # values, the "default" bucket is used. The data bag must follow the
+      # schema:
+      #
+      #   {
+      #     "default": {...},
+      #     "environment_name": {...},
+      #     "other_environment": {...},
+      #   }
+      #
+      # @param [Node] node
+      #   the current Chef node
+      # @param [String] bag
+      #   the name of the data bag
+      # @param [String] id
+      #   the id of the data bag
+      #
+      # @return [Hash]
+      #
+      def data_bag_item_for_environment(node, bag, id)
+        data = Chef::DataBagItem.load(bag, id)
+
+        if data[node.chef_environment]
+          Chef::Log.debug "Using #{node.chef_environment} as the key"
+          data[node.chef_environment]
+        else
+          Chef::Log.debug "#{node.chef_environment} key does not exist, using `default`"
+          data['default']
+        end
+      end
     end
 
     module DSL
@@ -102,6 +135,11 @@ EOH
       # @see Chef::Sugar::DataBag#encrypted_data_bag_item_for_environment
       def encrypted_data_bag_item_for_environment(bag, id, secret = nil)
         Chef::Sugar::DataBag.encrypted_data_bag_item_for_environment(node, bag, id, secret)
+      end
+
+      # @see Chef::Sugar::DataBag#data_bag_item_for_environment
+      def data_bag_item_for_environment(bag, id)
+        Chef::Sugar::DataBag.data_bag_item_for_environment(node, bag, id)
       end
     end
   end

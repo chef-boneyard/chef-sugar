@@ -71,4 +71,48 @@ describe Chef::Sugar::DataBag do
       end
     end
   end
+
+  describe '#data_bag_item_for_environment' do
+    let(:node) { double(:node, chef_environment: 'production') }
+
+    context 'when the environment exists' do
+      it 'loads the data from the environment' do
+        allow(Chef::DataBagItem).to receive(:load).and_return(
+          'production' => {
+            'username' => 'sethvargo',
+            'comment' => 'loves bacon',
+          },
+          'default' => {
+            'username' => 'schisamo',
+            'comment' => 'more of a ham guy',
+          }
+        )
+
+        expect(described_class.data_bag_item_for_environment(node, 'accounts', 'github')).to eq(
+          'comment' => 'loves bacon',
+          'username' => 'sethvargo',
+        )
+      end
+    end
+
+    context 'when the environment does not exist' do
+      it 'loads the data from the default bucket' do
+        allow(Chef::DataBagItem).to receive(:load).and_return(
+          'staging' => {
+            'username' => 'sethvargo',
+            'comment' => 'loves bacon',
+          },
+          'default' => {
+            'username' => 'schisamo',
+            'comment' => 'more of a ham guy',
+          }
+        )
+
+        expect(described_class.data_bag_item_for_environment(node, 'accounts', 'github')).to eq(
+          'comment' => 'more of a ham guy',
+          'username' => 'schisamo',
+        )
+      end
+    end
+  end
 end
