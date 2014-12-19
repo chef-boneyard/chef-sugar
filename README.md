@@ -397,7 +397,9 @@ end
 ```
 
 ### Virtualization
+- `kvm?`
 - `lxc?`
+- `virtualbox?`
 - `vmware?`
 
 #### Examples
