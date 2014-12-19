@@ -20,6 +20,19 @@ class Chef
       extend self
 
       #
+      # Determine if the current node is running under KVM.
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #   true if the machine is currently running under KVM, false
+      #   otherwise
+      #
+      def kvm?(node)
+        node.key?('virtualization') && node['virtualization']['system'] == 'kvm'
+      end
+
+      #
       # Determine if the current node is running in a linux container.
       #
       # @param [Chef::Node] node
@@ -30,6 +43,19 @@ class Chef
       #
       def lxc?(node)
         node.key?('virtualization') && node['virtualization']['system'] == 'lxc'
+      end
+
+      #
+      # Determine if the current node is running under VirtualBox.
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #   true if the machine is currently running under VirtualBox, false
+      #   otherwise
+      #
+      def virtualbox?(node)
+        node.key?('virtualization') && node['virtualization']['system'] == 'vbox'
       end
 
       #
@@ -47,11 +73,17 @@ class Chef
     end
 
     module DSL
+      # @see Chef::Sugar::Virtualization#kvm?
+      def kvm?; Chef::Sugar::Virtualization.kvm?(node); end
+
       # @see Chef::Sugar::Virtualization#lxc?
       def lxc?; Chef::Sugar::Virtualization.lxc?(node); end
 
+      # @see Chef::Sugar::Virtualization#virtualbox?
+      def virtualbox?; Chef::Sugar::Virtualization.virtualbox?(node); end
+
       # @see Chef::Sugar::Virtualization#vmware?
       def vmware?; Chef::Sugar::Virtualization.vmware?(node); end
-	  end
+    end
   end
 end
