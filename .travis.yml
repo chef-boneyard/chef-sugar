@@ -5,6 +5,10 @@ rvm:
   - 2.1
   - 2.2
 
+branches:
+  only:
+    - master
+
 cache: bundler
 
 bundler_args: --jobs 7
