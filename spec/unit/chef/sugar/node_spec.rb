@@ -47,7 +47,13 @@ describe Chef::Node do
     it 'raises an error if a key does not exist' do
       expect {
         node.deep_fetch!(:apache2, :not_real)
-      }.to raise_error(Chef::Node::AttributeDoesNotExistError)
+      }.to raise_error(Chef::Node::AttributeDoesNotExistError) { |e|
+        expect(e.message).to eq(<<-EOH.gsub(/^ {10}/, ''))
+          No attribute `node['apache2']['not_real']' exists on
+          the current node. Specifically the `not_real' attribute is not
+          defined. Please make sure you have spelled everything correctly.
+        EOH
+      }
     end
   end
 
