@@ -122,4 +122,16 @@ describe Chef::Sugar::Cloud do
       expect(described_class.azure?(node)).to be false
     end
   end
+
+  describe '#digitalocean?' do
+    it 'is true when the node is on digitalocean' do
+      node = { 'digital_ocean' => nil }
+      expect(described_class.digitalocean?(node)).to be true
+    end
+
+    it 'is false when the node is not on digitalocean' do
+      node = {}
+      expect(described_class.digitalocean?(node)).to be false
+    end
+  end
 end

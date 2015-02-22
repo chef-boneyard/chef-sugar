@@ -127,6 +127,18 @@ class Chef
       def azure?(node)
         node.key?('azure')
       end
+
+      #
+      # Return true if the current current node is in DigitalOcean
+      #
+      # @param [Chef::Node] node
+      #   the node to check
+      #
+      # @return [Boolean]
+      #
+      def digitalocean?(node)
+        node.key?('digital_ocean')
+      end
     end
 
     module DSL
@@ -157,6 +169,9 @@ class Chef
 
       # @see Chef::Sugar::Cloud#azure?
       def azure?; Chef::Sugar::Cloud.azure?(node); end
+
+      # @see Chef::Sugar::Cloud#digitalocean?
+      def digitalocean?; Chef::Sugar::Cloud.digitalocean?(node); end
     end
   end
 end
