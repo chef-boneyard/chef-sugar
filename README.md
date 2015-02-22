@@ -90,6 +90,7 @@ end
 ### Cloud
 - `azure?`
 - `cloud?`
+- `digitalocean?`
 - `ec2?`
 - `eucalyptus?`
 - `gce?`
