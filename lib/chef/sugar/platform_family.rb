@@ -110,6 +110,7 @@ class Chef
         node['platform_family'] == 'rhel'
       end
       alias_method :redhat?, :rhel?
+      alias_method :el?,     :rhel?
 
       #
       # Determine if the current node is a member of the slackware family.
