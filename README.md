@@ -302,6 +302,8 @@ There are also a series of dynamically defined matchers that map named operating
 - `mac_os_x_lion?`
 - `ubuntu_before_lucid?`
 - `ubuntu_before_or_at_maverick?`
+- `solaris_10?`
+- `solaris_11?`
 
 To get a full list, run the following in IRB:
 
