@@ -78,6 +78,7 @@ API
 
 - `_64_bit?`
 - `_32_bit?`
+- `sparc?`
 
 #### Examples
 ```ruby

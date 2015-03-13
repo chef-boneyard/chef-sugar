@@ -32,4 +32,18 @@ describe Chef::Sugar::Architecture do
       end
     end
   end
+
+  describe '#sparc?' do
+    it 'returns true when the system is SPARC' do
+      node = { 'kernel' => { 'machine' => 'sun4u' } }
+      expect(described_class.sparc?(node)).to be true
+    end
+
+    _64_bit_machines.each do |arch|
+      it "returns false when the system is #{arch}" do
+        node = { 'kernel' => { 'machine' => arch } }
+        expect(described_class.sparc?(node)).to be false
+      end
+    end
+  end
 end
