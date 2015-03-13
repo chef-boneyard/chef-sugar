@@ -42,6 +42,16 @@ class Chef
       alias_method :i386?, :_32_bit?
 
       #
+      # Determine if the current architecture is Intel.
+      #
+      # @return [Boolean]
+      #
+      def intel?(node)
+        %w(i86pc)
+          .include?(node['kernel']['machine'])
+      end
+
+      #
       # Determine if the current architecture is SPARC.
       #
       # @return [Boolean]
@@ -59,6 +69,9 @@ class Chef
       # @see Chef::Sugar::Architecture#_32_bit?
       def _32_bit?; Chef::Sugar::Architecture._32_bit?(node); end
       alias_method :i386?, :_32_bit?
+
+      # @see Chef::Sugar::Architecture#intel?
+      def intel?; Chef::Sugar::Architecture.intel?(node); end
 
       # @see Chef::Sugar::Architecture#sparc?
       def sparc?; Chef::Sugar::Architecture.sparc?(node); end
