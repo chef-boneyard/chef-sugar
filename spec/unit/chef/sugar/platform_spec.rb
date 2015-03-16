@@ -269,5 +269,19 @@ describe Chef::Sugar::Platform do
         expect(described_class.debian_before_wheezy?(node)).to be false
       end
     end
+
+    describe '#solaris_10?' do
+      it 'returns true when the version is 5.10' do
+        node = { 'platform' => 'solaris2', 'platform_version' => '5.10' }
+        expect(described_class.solaris_10?(node)).to be true
+      end
+    end
+
+    describe '#solaris_11?' do
+      it 'returns true when the version is 5.11' do
+        node = { 'platform' => 'solaris2', 'platform_version' => '5.11' }
+        expect(described_class.solaris_11?(node)).to be true
+      end
+    end
   end
 end
