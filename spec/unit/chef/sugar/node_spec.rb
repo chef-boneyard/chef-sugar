@@ -106,6 +106,48 @@ describe Chef::Node do
       })
     end
 
+    it 'maintains precedence level into nested calls' do
+      node.instance_eval do
+        namespace 'apache2', precedence: override do
+          namespace 'config' do
+            root '/var/www'
+          end
+        end
+      end
+
+      expect(node.override).to eq({
+        'apache2' => {
+          'config' => { 'root' => '/var/www' }
+        }
+      })
+    end
+
+    it 'resets precedence to default in subsequent non-nested calls' do
+      node.instance_eval do
+        namespace 'apache2', precedence: override do
+          namespace 'config' do
+            root '/var/www'
+          end
+        end
+
+        namespace 'php' do
+          version '5.3'
+        end
+      end
+
+      expect(node.override).to eq({
+        'apache2' => {
+          'config' => { 'root' => '/var/www' }
+        }
+      })
+
+      expect(node.default).to eq({
+        'php' => {
+          'version' => '5.3'
+        }
+      })
+    end
+
     it 'can access attributes within itself' do
       node.instance_eval do
         namespace 'apache2' do

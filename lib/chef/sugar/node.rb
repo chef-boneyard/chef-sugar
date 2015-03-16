@@ -141,6 +141,9 @@ EOH
       instance_eval(&block)
       @current_namespace = current_namespace - keys
 
+      if @current_namespace.empty?
+        @namespace_options = nil
+      end
       nil
     end
 
