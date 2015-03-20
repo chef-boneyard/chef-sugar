@@ -2,6 +2,13 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v3.0.1 (2015-03-20)
+-------------------
+### Breaking Changes
+- Rename `compile_time` `to at_compile_time` - if your recipes are affected by
+  this breaking change, your Chef Client run will produce a verbose error
+  message with details on how to fix the error.
+
 v3.0.0 (2015-03-17)
 -------------------
 ### Breaking Changes
