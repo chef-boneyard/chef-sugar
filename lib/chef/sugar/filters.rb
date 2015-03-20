@@ -4,7 +4,7 @@ class Chef
       #
       # Evaluate resources at compile time instead of converge time.
       #
-      class CompileTime
+      class AtCompileTime
         def initialize(recipe)
           @recipe = recipe
         end
@@ -94,19 +94,19 @@ class Chef
       #   end.run_action(:install)
       #
       # @example The new way
-      #   compile_time do
+      #   at_compile_time do
       #     package('apache2')
       #   end
       #
       # @example Resource actions are run in order
-      #   compile_time do
+      #   at_compile_time do
       #     service 'apache2' do
       #       action [:enable, :start] # run_action(:enable), run_action(:start)
       #     end
       #   end
       #
-      def compile_time(&block)
-        Chef::Sugar::Filters::CompileTime.new(self).evaluate(&block)
+      def at_compile_time(&block)
+        Chef::Sugar::Filters::AtCompileTime.new(self).evaluate(&block)
       end
 
       #
@@ -147,6 +147,90 @@ class Chef
       #
       def after(identifier, &block)
         Chef::Sugar::Filters::Injector.new(self, identifier, :after).evaluate(&block)
+      end
+    end
+
+    module RecipeDSL
+      #
+      # @deprecated The description is in the method body pretty accurately...
+      #
+      def compile_time(&block)
+        message = <<-EOH
+
+The Chef Sugar recipe DSL method `compile_time' has been renamed to
+`at_compile_time'! This is a breaking change that was released in a patch
+version, so please continue reading to understand the necessary semantic
+versioning violation.
+
+Despite having existed since October 15, 2013 (b4d4c0e) and being one of the
+most widely used cookbooks in the Chef ecosystem, Chef Software decided to
+implement their own version of `compile_time' in Chef 12.1, breaking any cookbook
+that uses or depends on Chef Sugar on Chef 12.1:
+
+    https://www.chef.io/blog/2015/03/03/chef-12-1-0-released
+
+As is common with Chef-ecosystem tooling, no warning was given, and maintainers
+are left to pick up the pieces from upset Chef users who get rather bespoke
+error messages now:
+
+    https://github.com/sethvargo/chef-sugar/issues/89
+    https://github.com/opscode-cookbooks/xml/issues/22
+    https://github.com/opscode-cookbooks/aws/pull/110
+
+In order to progress Chef Sugar forward, the DSL method has been renamed to
+avoid the namespace collision.
+
+In short, you should change this:
+
+    compile_time do
+      # ...
+    end
+
+to this:
+
+    at_compile_time do
+      # ...
+    end
+
+EOH
+
+        if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
+          message << <<-EOH
+You are running a version of Chef Client that includes the `compile_time'
+attribute on core Chef resources (most likely Chef 12.1+). Instead of continuing
+and having Chef provide you with an obscure error message, I am going to error
+here. There is no way for the Chef Recipe to successfully continue unless you
+change the Chef Sugar `compile_time' method to `at_compile_time' in your Chef
+recipes.
+
+You should NOT change resource-level `compile_time' attributes:
+
+    package "foo" do
+      compile_time true # Do NOT change these
+    end
+
+I truly apologize for the inconvienence and hope the reason for introducing this
+breaking change is clear. I am sorry if it causes extra work, but I promise this
+error message is much more informative that "wrong number of arguments".
+
+If you have any questions, please feel free to open an issue on GitHub at:
+
+    https://github.com/sethvargo/chef-sugar
+
+Thank you, and have a great day!
+EOH
+          raise RuntimeError, message
+        else
+          message << <<-EOH
+You are running a version of Chef Client that does not include the
+`compile_time' attribute on core Chef resources (most likely less than
+Chef 12.1), so this is just a warning. Please consider changing the Chef Sugar
+`compile_time' method to `at_compile_time' in your Chef recipes. If you upgrade
+Chef, your recipes WILL break.
+EOH
+          Chef::Log.warn(message)
+          at_compile_time(&block)
+        end
       end
     end
   end

@@ -412,13 +412,13 @@ end
 ```
 
 ### Filters
-- `compile_time` - accepts a block of resources to run at compile time
+- `at_compile_time` - accepts a block of resources to run at compile time
 - `before` - insert resource in the collection before the given resource
 - `after` - insert resource in the collection after the given resource
 
 #### Examples
 ```ruby
-compile_time do
+at_compile_time do
   package 'apache2'
 end
 
