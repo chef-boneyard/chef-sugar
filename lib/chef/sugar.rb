@@ -41,6 +41,7 @@ class Chef
 end
 
 Chef::Recipe.send(:include, Chef::Sugar::DSL)
+Chef::Recipe.send(:include, Chef::Sugar::RecipeDSL) # TODO: this is a hack
 Chef::Resource.send(:include, Chef::Sugar::DSL)
 Chef::Provider.send(:include, Chef::Sugar::DSL)
 
