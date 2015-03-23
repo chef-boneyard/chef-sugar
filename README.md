@@ -80,6 +80,8 @@ API
 - `_32_bit?`
 - `intel?`
 - `sparc?`
+- `ppc64?`
+- `ppc64le?`
 
 #### Examples
 ```ruby
