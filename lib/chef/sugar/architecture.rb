@@ -60,6 +60,26 @@ class Chef
         %w(sun4u sun4v)
           .include?(node['kernel']['machine'])
       end
+
+      #
+      # Determine if the current architecture is Powerpc64 Big Endian
+      #
+      # @return [Boolean]
+      #
+      def ppc64?(node)
+        %w(ppc64)
+          .include?(node['kernel']['machine'])
+      end
+
+      #
+      # Determine if the current architecture is Powerpc64 Little Endian
+      #
+      # @return [Boolean]
+      #
+      def ppc64le?(node)
+        %w(ppc64le)
+          .include?(node['kernel']['machine'])
+      end
     end
 
     module DSL
@@ -75,6 +95,12 @@ class Chef
 
       # @see Chef::Sugar::Architecture#sparc?
       def sparc?; Chef::Sugar::Architecture.sparc?(node); end
+
+      # @see Chef::Sugar::Architecture#ppc64?
+      def ppc64?; Chef::Sugar::Architecture.ppc64?(node); end
+
+      # @see Chef::Sugar::Architecture#ppc64le?
+      def ppc64le?; Chef::Sugar::Architecture.ppc64le?(node); end
     end
   end
 end

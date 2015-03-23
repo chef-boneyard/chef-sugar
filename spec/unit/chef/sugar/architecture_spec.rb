@@ -60,4 +60,18 @@ describe Chef::Sugar::Architecture do
       end
     end
   end
+
+  describe '#ppc64?' do
+    it 'returns true when the system is PowerPC64 Big Endian' do
+      node = { 'kernel' => { 'machine' => 'ppc64' } }
+      expect(described_class.ppc64?(node)).to be true
+    end
+  end
+
+  describe '#ppc64le?' do
+    it 'returns true when the system is PowerPC64 Little Endian' do
+      node = { 'kernel' => { 'machine' => 'ppc64le' } }
+      expect(described_class.ppc64le?(node)).to be true
+    end
+  end
 end
