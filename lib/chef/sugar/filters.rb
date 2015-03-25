@@ -162,7 +162,7 @@ The Chef Sugar recipe DSL method `compile_time' has been renamed to
 version, so please continue reading to understand the necessary semantic
 versioning violation.
 
-Chef Software implementd a version of `compile_time' in Chef 12.1, breaking any 
+Chef Software implemented a version of `compile_time' in Chef 12.1, breaking any 
 cookbook that uses or depends on Chef Sugar on Chef 12.1:
 
     https://www.chef.io/blog/2015/03/03/chef-12-1-0-released
