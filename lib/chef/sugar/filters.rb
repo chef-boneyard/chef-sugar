@@ -162,20 +162,10 @@ The Chef Sugar recipe DSL method `compile_time' has been renamed to
 version, so please continue reading to understand the necessary semantic
 versioning violation.
 
-Despite having existed since October 15, 2013 (b4d4c0e) and being one of the
-most widely used cookbooks in the Chef ecosystem, Chef Software decided to
-implement their own version of `compile_time' in Chef 12.1, breaking any cookbook
-that uses or depends on Chef Sugar on Chef 12.1:
+Chef Software implementd a version of `compile_time' in Chef 12.1, breaking any 
+cookbook that uses or depends on Chef Sugar on Chef 12.1:
 
     https://www.chef.io/blog/2015/03/03/chef-12-1-0-released
-
-As is common with Chef-ecosystem tooling, no warning was given, and maintainers
-are left to pick up the pieces from upset Chef users who get rather bespoke
-error messages now:
-
-    https://github.com/sethvargo/chef-sugar/issues/89
-    https://github.com/opscode-cookbooks/xml/issues/22
-    https://github.com/opscode-cookbooks/aws/pull/110
 
 In order to progress Chef Sugar forward, the DSL method has been renamed to
 avoid the namespace collision.
@@ -211,7 +201,7 @@ You should NOT change resource-level `compile_time' attributes:
 
 I truly apologize for the inconvienence and hope the reason for introducing this
 breaking change is clear. I am sorry if it causes extra work, but I promise this
-error message is much more informative that "wrong number of arguments".
+error message is much more informative than "wrong number of arguments".
 
 If you have any questions, please feel free to open an issue on GitHub at:
 
