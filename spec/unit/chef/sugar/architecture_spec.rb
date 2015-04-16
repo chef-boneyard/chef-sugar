@@ -4,6 +4,7 @@ describe Chef::Sugar::Architecture do
   it_behaves_like 'a chef sugar'
 
   _64_bit_machines = %w(amd64 x86_64 ppc64 ppc64le s390x ia64 sparc64 aarch64 arch64 arm64 sun4u sun4v)
+  _intel_machines = %w(i86pc i386 x86_64 amd64 i686)
 
   describe '#_64_bit?' do
     _64_bit_machines.each do |arch|
@@ -48,19 +49,14 @@ describe Chef::Sugar::Architecture do
   end
 
   describe '#intel?' do
-    it 'returns true when the system is Intel' do
-      node = { 'kernel' => { 'machine' => 'i86pc' } }
-      expect(described_class.intel?(node)).to be true
-    end
-
-    it 'returns true when the system is Intel' do
-      node = { 'kernel' => { 'machine' => 'i386' } }
-      expect(described_class.intel?(node)).to be true
-    end
-
-    _64_bit_machines.each do |arch|
-      it "returns false when the system is #{arch}" do
+    _intel_machines.each do |arch|
+      it "returns true when the system is #{arch}" do
         node = { 'kernel' => { 'machine' => arch } }
+        expect(described_class.intel?(node)).to be true
+      end
+
+      it 'returns false when the system is non Intel' do
+        node = { 'kernel' => { 'machine' => 'sun4u' } }
         expect(described_class.intel?(node)).to be false
       end
     end

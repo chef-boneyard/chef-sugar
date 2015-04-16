@@ -55,7 +55,7 @@ class Chef
       # @return [Boolean]
       #
       def intel?(node)
-        %w(i86pc i386)
+        %w(i86pc i386 x86_64 amd64 i686)
           .include?(node['kernel']['machine'])
       end
 
