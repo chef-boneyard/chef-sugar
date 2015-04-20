@@ -25,7 +25,7 @@ class Chef
       # @return [Boolean]
       #
       def _64_bit?(node)
-        %w(amd64 x86_64 ppc64 ppc64le s390x ia64 sparc64 aarch64 arch64 arm64)
+        %w(amd64 x86_64 ppc64 ppc64le s390x ia64 sparc64 aarch64 arch64 arm64 sun4v sun4u)
           .include?(node['kernel']['machine'])
       end
 
@@ -39,7 +39,15 @@ class Chef
       def _32_bit?(node)
         !_64_bit?(node)
       end
-      alias_method :i386?, :_32_bit?
+
+      #
+      # Determine if the current architecture is i386
+      #
+      # @return [Boolean]
+      #
+      def i386?(node)
+        _32_bit?(node) && intel?(node)
+      end
 
       #
       # Determine if the current architecture is Intel.
@@ -47,7 +55,7 @@ class Chef
       # @return [Boolean]
       #
       def intel?(node)
-        %w(i86pc)
+        %w(i86pc i386 x86_64 amd64 i686)
           .include?(node['kernel']['machine'])
       end
 
