@@ -77,12 +77,12 @@ describe Chef::Sugar::Platform do
 
   describe '#redhat_enterprise_linux?' do
     it 'returns true when the platform is redhat enterprise linux' do
-      node = { 'platform' => 'enterprise' }
+      node = { 'platform' => 'redhat' }
       expect(described_class.redhat_enterprise_linux?(node)).to be true
     end
 
     it 'returns false when the platform is not redhat enterprise linux' do
-      node = { 'platform' => 'windows' }
+      node = { 'platform' => 'enterprise' }
       expect(described_class.redhat_enterprise_linux?(node)).to be false
     end
   end
