@@ -167,7 +167,7 @@ class Chef
       # @return [Boolean]
       #
       def redhat_enterprise_linux?(node)
-        node['platform'] == 'enterprise'
+        node['platform'] == 'redhat'
       end
       alias_method :redhat_enterprise?, :redhat_enterprise_linux?
 
