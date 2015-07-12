@@ -113,6 +113,17 @@ class Chef
       end
 
       #
+      # Determine if the current node is debian (platform, not platform_family).
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def debian_platform?(node)
+        node['platform'] == 'debian'
+      end
+
+      #
       # Determine if the current node is amazon linux.
       #
       # @param [Chef::Node] node
@@ -170,6 +181,17 @@ class Chef
         node['platform'] == 'redhat'
       end
       alias_method :redhat_enterprise?, :redhat_enterprise_linux?
+
+      #
+      # Determine if the current node is fedora (platform, not platform_family).
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def fedora_platform?(node)
+        node['platform'] == 'fedora'
+      end
 
       #
       # Determine if the current node is solaris2
