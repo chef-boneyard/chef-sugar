@@ -237,6 +237,17 @@ class Chef
       def omnios?(node)
         node['platform'] == 'omnios'
       end
+
+      #
+      # Determine if the current node is raspbian
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def raspbian?(node)
+        node['platform'] == 'raspbian'
+      end
     end
 
     module DSL
