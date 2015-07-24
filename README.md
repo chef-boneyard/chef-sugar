@@ -405,6 +405,7 @@ end
 - `lxc?`
 - `virtualbox?`
 - `vmware?`
+- `openvz?`
 
 #### Examples
 ```ruby

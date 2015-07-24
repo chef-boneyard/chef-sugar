@@ -70,4 +70,21 @@ describe Chef::Sugar::Virtualization do
       expect(described_class.vmware?(node)).to be false
     end
   end
+
+  describe '#openvz?' do
+    it 'returns true when the machine is under openvz' do
+      node = { 'virtualization' => { 'system' => 'openvz' } }
+      expect(described_class.openvz?(node)).to be true
+    end
+
+    it 'returns false when the virtual machine is not under openvz' do
+      node = { 'virtualization' => { 'system' => 'kvm' } }
+      expect(described_class.openvz?(node)).to be false
+    end
+
+    it 'returns false when the machine is not virtual' do
+      node = {}
+      expect(described_class.openvz?(node)).to be false
+    end
+  end
 end
