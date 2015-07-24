@@ -70,6 +70,19 @@ class Chef
       def vmware?(node)
         node.key?('virtualization') && node['virtualization']['system'] == 'vmware'
       end
+
+      #
+      # Determine if the current node is running under openvz.
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #   true if the machine is currently running under openvz, false
+      #   otherwise
+      #
+      def openvz?(node)
+        node.key?('virtualization') && node['virtualization']['system'] == 'openvz'
+      end
     end
 
     module DSL
@@ -84,6 +97,9 @@ class Chef
 
       # @see Chef::Sugar::Virtualization#vmware?
       def vmware?; Chef::Sugar::Virtualization.vmware?(node); end
+
+      # @see Chef::Sugar::Virtualization#openvz?
+      def openvz?; Chef::Sugar::Virtualization.openvz?(node); end
     end
   end
 end
