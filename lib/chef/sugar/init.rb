@@ -34,7 +34,7 @@ class Chef
       # @return [Boolean]
       #
       def upstart?
-        ::File.executable?('/sbin/initctl')
+        File.executable?('/sbin/initctl')
       end
 
       #
@@ -43,7 +43,7 @@ class Chef
       # @return [Boolean]
       #
       def runit?
-        ::File.executable?('/sbin/runit-init')
+        File.executable?('/sbin/runit-init')
       end
     end
 
