@@ -257,8 +257,7 @@ end
 #### Examples
 ```ruby
 systemd_service 'my-service' do
-  description 'Test Service'
-  documentation 'man:true(1)'
+  description 'My Service'
   install do
     wanted_by 'multi-user.target'
   end
