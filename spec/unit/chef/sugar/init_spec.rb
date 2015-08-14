@@ -19,13 +19,15 @@ describe Chef::Sugar::Init do
     it 'is true when /proc/1/comm is systemd' do
       allow(IO).to receive(:read)
         .with("/proc/1/comm")
-        .and_return(true)
+        .and_return("systemd")
 
-      expect(described_class.systemd?).to be true 
+      node = {}
+      expect(described_class.systemd?(node)).to be true 
     end
 
     it 'is false when /proc/1/comm is not systemd' do
-      expect(described_class.systemd?).to be false
+      node = {}
+      expect(described_class.systemd?(node)).to be false
     end
   end
 
@@ -35,11 +37,13 @@ describe Chef::Sugar::Init do
         .with("/sbin/initctl")
         .and_return(true)
 
-      expect(described_class.upstart?).to be true
+      node = {}
+      expect(described_class.upstart?(node)).to be true
     end
 
     it 'is false when /sbin/initctl is not executable' do
-      expect(described_class.upstart?).to be false
+      node = {}
+      expect(described_class.upstart?(node)).to be false
     end
   end
 
@@ -48,11 +52,14 @@ describe Chef::Sugar::Init do
       allow(File).to receive(:executable?)
         .with("/sbin/runit-init")
         .and_return(true)
-      expect(described_class.runit?).to be true
+
+      node = {}
+      expect(described_class.runit?(node)).to be true
     end
 
     it 'is false when /sbin/runit-init is not executable' do
-      expect(described_class.runit?).to be false
+      node = {}
+      expect(described_class.runit?(node)).to be false
     end
   end
 end

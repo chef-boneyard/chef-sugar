@@ -24,7 +24,7 @@ class Chef
       #
       # @return [Boolean]
       #
-      def systemd?
+      def systemd?(node)
         IO.read('/proc/1/comm').chomp == 'systemd'
       end
 
@@ -33,7 +33,7 @@ class Chef
       #
       # @return [Boolean]
       #
-      def upstart?
+      def upstart?(node)
         File.executable?('/sbin/initctl')
       end
 
@@ -42,20 +42,20 @@ class Chef
       #
       # @return [Boolean]
       #
-      def runit?
+      def runit?(node)
         File.executable?('/sbin/runit-init')
       end
     end
 
     module DSL
       # @see Chef::Sugar::Init#systemd?
-      def systemd?; Chef::Sugar::Init.systemd?; end
+      def systemd?; Chef::Sugar::Init.systemd?(node); end
 
       # @see Chef::Sugar::Init#upstart?
-      def upstart?; Chef::Sugar::Init.upstart?; end
+      def upstart?; Chef::Sugar::Init.upstart?(node); end
 
       # @see Chef::Sugar::Init#runit?
-      def runit?; Chef::Sugar::Init.runit?; end
+      def runit?; Chef::Sugar::Init.runit?(node); end
     end
   end
 end
