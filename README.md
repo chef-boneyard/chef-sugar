@@ -262,11 +262,7 @@ systemd_service 'my-service' do
     wanted_by 'multi-user.target'
   end
   service do
-    type 'oneshot'
     exec_start '/usr/bin/myserviced'
-    user 'nobody'
-    kill_signal 'SIGTERM'
-    memory_limit '50M'
   end
   action [:create, :enable, :start]
   only_if { systemd? }
