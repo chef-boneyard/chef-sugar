@@ -26,6 +26,7 @@ class Chef
     require_relative 'sugar/data_bag'
     require_relative 'sugar/docker'
     require_relative 'sugar/filters'
+    require_relative 'sugar/init'
     require_relative 'sugar/ip'
     require_relative 'sugar/kernel'
     require_relative 'sugar/node'
