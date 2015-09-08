@@ -248,6 +248,28 @@ class Chef
       def raspbian?(node)
         node['platform'] == 'raspbian'
       end
+
+      #
+      # Determine if the current node is a Cisco nexus device
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def nexus?(node)
+        node['platform'] == 'nexus'
+      end
+
+      #
+      # Determine if the current node is a Cisco IOS-XR device
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def ios_xr?(node)
+        node['platform'] == 'ios_xr'
+      end
     end
 
     module DSL

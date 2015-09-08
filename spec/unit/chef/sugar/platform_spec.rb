@@ -141,9 +141,33 @@ describe Chef::Sugar::Platform do
       expect(described_class.raspbian?(node)).to be true
     end
 
-    it 'returns false when the platform is not omnios' do
+    it 'returns false when the platform is not raspbian' do
       node = { 'platform' => 'windows' }
       expect(described_class.raspbian?(node)).to be false
+    end
+  end
+
+  describe '#nexus' do
+    it 'returns true when the platform is nexus' do
+      node = { 'platform' => 'nexus' }
+      expect(described_class.nexus?(node)).to be true
+    end
+
+    it 'returns false when the platform is not nexus' do
+      node = { 'platform' => 'windows' }
+      expect(described_class.nexus?(node)).to be false
+    end
+  end
+
+  describe '#ios_xr' do
+    it 'returns true when the platform is ios_xr' do
+      node = { 'platform' => 'ios_xr' }
+      expect(described_class.ios_xr?(node)).to be true
+    end
+
+    it 'returns false when the platform is not ios_xr' do
+      node = { 'platform' => 'windows' }
+      expect(described_class.ios_xr?(node)).to be false
     end
   end
 

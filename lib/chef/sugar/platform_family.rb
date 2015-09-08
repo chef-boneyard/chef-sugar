@@ -146,6 +146,17 @@ class Chef
       end
 
       #
+      # Determine if the current node is a member of the wrlinux family.
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #
+      def wrlinux?(node)
+        node['platform_family'] == 'wrlinux'
+      end
+
+      #
       # Determine if the current system is a linux derivative
       #
       # @param [Chef::Node] node
@@ -161,6 +172,7 @@ class Chef
           rhel
           slackware
           suse
+          wrlinux
         ).include?(node['platform_family'])
       end
     end
