@@ -135,6 +135,18 @@ describe Chef::Sugar::PlatformFamily do
     end
   end
 
+  describe '#wrlinux?' do
+    it 'returns true when the platform_family is wrlinux' do
+      node = { 'platform_family' => 'wrlinux' }
+      expect(described_class.wrlinux?(node)).to be true
+    end
+
+    it 'returns false when the platform_family is not wrlinux' do
+      node = { 'platform_family' => 'debian' }
+      expect(described_class.wrlinux?(node)).to be false
+    end
+  end
+
   describe '#linux?' do
     it 'returns true when the platform_family is Debian' do
       node = { 'platform_family' => 'debian' }
@@ -143,6 +155,11 @@ describe Chef::Sugar::PlatformFamily do
 
     it 'returns true when the platform_family is RedHat' do
       node = { 'platform_family' => 'rhel' }
+      expect(described_class.linux?(node)).to be true
+    end
+
+    it 'returns true when the platform_family is wrlinux' do
+      node = { 'platform_family' => 'wrlinux' }
       expect(described_class.linux?(node)).to be true
     end
 
