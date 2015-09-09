@@ -322,6 +322,8 @@ node.deep_fetch('apache2', 'config', 'root') => node['apache2']['config']['root'
 - `smartos?`
 - `omnios?`
 - `raspbian?`
+- `nexus?`
+- `ios_xr?`
 
 There are also a series of dynamically defined matchers that map named operating system release versions and comparison operators in the form "#{platform}\_#{operator}\_#{name}?". For example:
 
@@ -360,6 +362,7 @@ end
 - `slackware?`
 - `suse?`
 - `windows?`
+- `wrlinux?`
 
 #### Examples
 ```ruby
