@@ -96,7 +96,9 @@ class Chef
 
       # @see Chef::Sugar::Architecture#_32_bit?
       def _32_bit?; Chef::Sugar::Architecture._32_bit?(node); end
-      alias_method :i386?, :_32_bit?
+
+      # @see Chef::Sugar::Architecture#intel?
+      def i386?; Chef::Sugar::Architecture.i386?(node); end
 
       # @see Chef::Sugar::Architecture#intel?
       def intel?; Chef::Sugar::Architecture.intel?(node); end
