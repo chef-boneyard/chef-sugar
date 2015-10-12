@@ -14,6 +14,16 @@ describe Chef::Sugar::Architecture do
       end
     end
 
+    it 'returns true when ohai provides the bittiness' do
+      node = { 'kernel' => { 'bits' => '64' } }
+      expect(described_class._64_bit?(node)).to be true
+    end
+
+    it 'returns false when ohai provides the bittiness' do
+      node = { 'kernel' => { 'bits' => '32' } }
+      expect(described_class._64_bit?(node)).to be false
+    end
+
     it 'returns false when the system is not 64 bit' do
       node = { 'kernel' => { 'machine' => 'i386' } }
       expect(described_class._64_bit?(node)).to be false
@@ -59,6 +69,12 @@ describe Chef::Sugar::Architecture do
         node = { 'kernel' => { 'machine' => 'sun4u' } }
         expect(described_class.intel?(node)).to be false
       end
+    end
+  end
+
+  describe '#powerpc?' do
+    it 'returns true when the system is IBM POWER or powerpc' do
+      node = { 'kernel' => { 'machine' => 'powerpc' } }
     end
   end
 
