@@ -2,6 +2,18 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v3.2.0 (2015-12-10)
+-------------------
+### Improvements
+- Add platform matchers for `debian` and `fedora`
+- Add `openvz` support under virtualization
+- Add init system detection support
+- Add support for `nexus`, `ios_xr` platforms and `wrlinux` platform_family
+- Add additional `aix` helpers
+
+### Bug Fixes
+- Properly expose `Architecture#i386?` in the DSL
+
 v3.1.1 (2015-06-23)
 -------------------
 ### Improvements
