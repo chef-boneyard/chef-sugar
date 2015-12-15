@@ -171,6 +171,13 @@ describe Chef::Sugar::Platform do
     end
   end
 
+  describe '#platform_version' do
+    it 'returns the platform version' do
+      node = { 'platform_version' => '1.2.3' }
+      expect(described_class.platform_version(node)).to eq('1.2.3')
+    end
+  end
+
   context 'dynamic matchers' do
     describe '#ubuntu_after_lucid?' do
       it 'returns true when the version is later than 10.04' do
@@ -318,6 +325,26 @@ describe Chef::Sugar::Platform do
         node = { 'platform' => 'solaris2', 'platform_version' => '5.11' }
         expect(described_class.solaris_11?(node)).to be true
       end
+    end
+  end
+end
+
+describe Chef::Sugar::Platform::Version do
+  let(:node)             { { 'platform_version' => '1.2.3' } }
+  let(:platform_version) { described_class.new(node) }
+
+  describe '#initialize' do
+    it 'returns the platform_version when called' do
+      expect(platform_version).to eq('1.2.3')
+    end
+  end
+
+  describe '#satisfies?' do
+    it 'invokes Gem::Requirement to check the constraints and returns the result' do
+      requirement = double('requirement')
+      expect(Gem::Requirement).to receive(:new).with('> 1').and_return(requirement)
+      expect(requirement).to receive(:satisfied_by?).and_return(true)
+      expect(platform_version.satisfies?('> 1')).to be true
     end
   end
 end
