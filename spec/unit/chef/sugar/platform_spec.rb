@@ -334,6 +334,10 @@ describe Chef::Sugar::Platform::Version do
   let(:platform_version) { described_class.new(node) }
 
   describe '#initialize' do
+    it 'acts like a String' do
+      expect(platform_version).to be_a(String)
+    end
+    
     it 'returns the platform_version when called' do
       expect(platform_version).to eq('1.2.3')
     end
