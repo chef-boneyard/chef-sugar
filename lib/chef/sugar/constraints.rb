@@ -17,34 +17,6 @@
 class Chef
   module Sugar
     module Constraints
-      extend self
-
-      #
-      # Shortcut method for creating a new {Version} object.
-      #
-      # @param [String] version
-      #   the version (as a string) to create
-      #
-      # @return [Chef::Sugar::Constraints::Version]
-      #   the new version object
-      #
-      def version(version)
-        Chef::Sugar::Constraints::Version.new(version)
-      end
-
-      #
-      # Shortcut method for creating a new {Constraint} object.
-      #
-      # @param [String, Array<String>] constraints
-      #   the list of constraints to use
-      #
-      # @return [Chef::Sugar::Constraints::Constraint]
-      #   the new constraint object
-      #
-      def constraint(*constraints)
-        Chef::Sugar::Constraints::Constraint.new(*constraints)
-      end
-
       #
       # This class is a wrapper around a version requirement that adds a nice
       # DSL for comparing constraints:
@@ -99,7 +71,7 @@ class Chef
       # @example Compare a version with constraints
       #   Chef::Sugar::Version('1.2.3').satisfies?('~> 1.3.4', '< 2.0.5')
       #
-      class Version
+      class Version < String
         #
         # Create a new version object.
         #
@@ -107,6 +79,7 @@ class Chef
         #   the version to create
         #
         def initialize(version)
+          super
           @version = Gem::Version.new(version)
         end
 
@@ -129,32 +102,6 @@ class Chef
         def satisfies?(*constraints)
           Gem::Requirement.new(*constraints).satisfied_by?(@version)
         end
-      end
-    end
-
-    module DSL
-      # @see Chef::Sugar::Constraints#version
-      def version(version)
-        Chef::Sugar::Constraints::Version.new(version)
-      end
-
-      # @see Chef::Sugar::Constraints#constraint
-      def constraint(*constraints)
-        Chef::Sugar::Constraints.constraint(*constraints)
-      end
-
-      #
-      # This wrapper/convenience method is only available in the recipe DSL. It
-      # creates a new version object from the {Chef::VERSION}.
-      #
-      # @example Check if Chef 11+
-      #   chef_version.satisfies?('>= 11.0.0')
-      #
-      # @return [Chef::Sugar::Constraints::Version]
-      #   a version object, wrapping the current {Chef::VERSION}
-      #
-      def chef_version
-        version(Chef::VERSION)
       end
     end
   end

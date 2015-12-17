@@ -171,6 +171,13 @@ describe Chef::Sugar::Platform do
     end
   end
 
+  describe '#platform_version' do
+    it 'returns the platform version' do
+      node = { 'platform_version' => '1.2.3' }
+      expect(described_class.platform_version(node)).to eq('1.2.3')
+    end
+  end
+
   context 'dynamic matchers' do
     describe '#ubuntu_after_lucid?' do
       it 'returns true when the version is later than 10.04' do

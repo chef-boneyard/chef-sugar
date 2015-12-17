@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+require_relative 'constraints'
+
 class Chef
   module Sugar
     module Platform
@@ -269,6 +271,18 @@ class Chef
       #
       def ios_xr?(node)
         node['platform'] == 'ios_xr'
+      end
+
+      #
+      # Return the platform_version for the node. Acts like a String
+      # but also provides a mechanism for checking version constraints.
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Chef::Sugar::Constraints::Version]
+      #
+      def platform_version(node)
+        Chef::Sugar::Constraints::Version.new(node['platform_version'])
       end
     end
 
