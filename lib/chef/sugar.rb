@@ -23,6 +23,7 @@ class Chef
     require_relative 'sugar/architecture'
     require_relative 'sugar/cloud'
     require_relative 'sugar/constraints'
+    require_relative 'sugar/constraints_dsl'
     require_relative 'sugar/data_bag'
     require_relative 'sugar/docker'
     require_relative 'sugar/filters'
