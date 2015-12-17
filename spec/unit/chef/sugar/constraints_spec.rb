@@ -1,13 +1,15 @@
 require 'spec_helper'
 
 describe Chef::Sugar::Constraints do
-  # it_behaves_like 'a chef sugar'
-
   describe '#version' do
     let(:version) { described_class.version('1.2.3') }
 
     it 'returns a new version object' do
       expect(version).to be_a(Chef::Sugar::Constraints::Version)
+    end
+
+    it 'behaves like a String' do
+      expect(version).to be_a(String)
     end
 
     it 'returns true with the version is satisifed' do

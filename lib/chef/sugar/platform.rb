@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+require_relative 'constraints'
+
 class Chef
   module Sugar
     module Platform
@@ -277,21 +279,10 @@ class Chef
       #
       # @param [Chef::Node] node
       #
-      # @return [Chef::Sugar::Platform::Version]
+      # @return [Chef::Sugar::Constraints::Version]
       #
       def platform_version(node)
-        Chef::Sugar::Platform::Version.new(node)
-      end
-
-      class Version < String
-        def initialize(node)
-          super node['platform_version']
-          @version = Gem::Version.new(node['platform_version'])
-        end
-
-        def satisfies?(*constraints)
-          Gem::Requirement.new(*constraints).satisfied_by?(@version)
-        end
+        Chef::Sugar::Constraints::Version.new(node['platform_version'])
       end
     end
 

@@ -71,7 +71,7 @@ class Chef
       # @example Compare a version with constraints
       #   Chef::Sugar::Version('1.2.3').satisfies?('~> 1.3.4', '< 2.0.5')
       #
-      class Version
+      class Version < String
         #
         # Create a new version object.
         #
@@ -79,6 +79,7 @@ class Chef
         #   the version to create
         #
         def initialize(version)
+          super
           @version = Gem::Version.new(version)
         end
 

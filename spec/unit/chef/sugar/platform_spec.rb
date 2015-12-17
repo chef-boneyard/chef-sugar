@@ -328,27 +328,3 @@ describe Chef::Sugar::Platform do
     end
   end
 end
-
-describe Chef::Sugar::Platform::Version do
-  let(:node)             { { 'platform_version' => '1.2.3' } }
-  let(:platform_version) { described_class.new(node) }
-
-  describe '#initialize' do
-    it 'acts like a String' do
-      expect(platform_version).to be_a(String)
-    end
-    
-    it 'returns the platform_version when called' do
-      expect(platform_version).to eq('1.2.3')
-    end
-  end
-
-  describe '#satisfies?' do
-    it 'invokes Gem::Requirement to check the constraints and returns the result' do
-      requirement = double('requirement')
-      expect(Gem::Requirement).to receive(:new).with('> 1').and_return(requirement)
-      expect(requirement).to receive(:satisfied_by?).and_return(true)
-      expect(platform_version.satisfies?('> 1')).to be true
-    end
-  end
-end
