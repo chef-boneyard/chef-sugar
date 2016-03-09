@@ -83,6 +83,14 @@ class Chef
       def openvz?(node)
         node.key?('virtualization') && node['virtualization']['system'] == 'openvz'
       end
+
+      def virtual?(node)
+        openvz?(node) || vmware?(node) || virtualbox?(node) || lxc?(node) || kvm?(node)
+      end
+
+      def physical?(node)
+        !virtual?(node)
+      end
     end
 
     module DSL
@@ -100,6 +108,12 @@ class Chef
 
       # @see Chef::Sugar::Virtualization#openvz?
       def openvz?; Chef::Sugar::Virtualization.openvz?(node); end
+
+      # @see Chef::Sugar::Virtualization#virtual?
+      def virtual?; Chef::Sugar::Virtualization.virtual?(node); end
+      
+      # @see Chef::Sugar::Virtualization#physical?
+      def physical?; Chef::Sugar::Virtualization.physical?(node); end
     end
   end
 end
