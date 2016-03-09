@@ -87,4 +87,32 @@ describe Chef::Sugar::Virtualization do
       expect(described_class.openvz?(node)).to be false
     end
   end
+
+  describe '#virtual?' do
+    it 'returns true when the machine is under a supported virtualization provider' do
+      %w(openvz vmware vbox lxc kvm).each do |host|
+        node = { 'virtualization' => { 'system' => host } }
+        expect(described_class.virtual?(node)).to be true
+      end
+    end
+
+    it 'returns false when the machine is not virtual' do
+      node = {}
+      expect(described_class.virtual?(node)).to be false
+    end
+  end
+
+  describe '#physical?' do
+    it 'returns false when the machine is under a supported virtualization provider' do
+      %w(openvz vmware vbox lxc kvm).each do |host|
+        node = { 'virtualization' => { 'system' => host } }
+        expect(described_class.physical?(node)).to be false
+      end
+    end
+
+    it 'returns true when the machine is not virtual' do
+      node = {}
+      expect(described_class.physical?(node)).to be true
+    end
+  end
 end
