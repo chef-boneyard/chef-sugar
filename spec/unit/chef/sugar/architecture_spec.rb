@@ -111,5 +111,4 @@ describe Chef::Sugar::Architecture do
       expect(described_class.ppc64le?(node)).to be true
     end
   end
-
 end
