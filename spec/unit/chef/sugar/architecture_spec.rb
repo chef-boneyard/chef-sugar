@@ -78,6 +78,14 @@ describe Chef::Sugar::Architecture do
     end
   end
 
+  describe '#armhf?' do
+    it 'returns true when the system is ARM' do
+      node = { 'kernel' => { 'machine' => 'armv7l' } }
+      expect(described_class.intel?(node)).to be false
+      expect(described_class.armhf?(node)).to be true
+    end
+  end
+
   describe '#sparc?' do
     it 'returns true when the system is SPARC sun4u' do
       node = { 'kernel' => { 'machine' => 'sun4u' } }
@@ -103,4 +111,5 @@ describe Chef::Sugar::Architecture do
       expect(described_class.ppc64le?(node)).to be true
     end
   end
+
 end
