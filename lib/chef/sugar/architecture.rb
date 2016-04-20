@@ -137,7 +137,7 @@ class Chef
       def powerpc?; Chef::Sugar::Architecture.powerpc?(node); end
 
       # @see Chef::Sugar::Architecture#arm?
-      def armhf?; Chef::Sugar::Architecture.arm?(node); end
+      def armhf?; Chef::Sugar::Architecture.armhf?(node); end
 
     end
   end
