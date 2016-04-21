@@ -98,6 +98,17 @@ class Chef
         %w(powerpc)
           .include?(node['kernel']['machine'])
       end
+
+      #
+      # Determine if the current architecture is ARM with Hard Float
+      #
+      # @return [Boolean]
+      #
+      def armhf?(node)
+        # Add more arm variants as needed here
+        %w(armv7l)
+          .include?(node['kernel']['machine'])
+      end
     end
 
     module DSL
@@ -124,6 +135,10 @@ class Chef
 
       # @see Chef::Sugar::Architecture#powerpc?
       def powerpc?; Chef::Sugar::Architecture.powerpc?(node); end
+
+      # @see Chef::Sugar::Architecture#arm?
+      def armhf?; Chef::Sugar::Architecture.armhf?(node); end
+
     end
   end
 end
