@@ -25,7 +25,7 @@ class Chef
       # @return [Boolean]
       #
       def _64_bit?(node)
-        %w(amd64 x86_64 ppc64 ppc64le s390x ia64 sparc64 aarch64 arch64 arm64 sun4v sun4u)
+        %w(amd64 x86_64 ppc64 ppc64le s390x ia64 sparc64 aarch64 arch64 arm64 sun4v sun4u s390x)
           .include?(node['kernel']['machine']) || ( node['kernel']['bits'] == '64' )
       end
 
@@ -109,6 +109,16 @@ class Chef
         %w(armv7l)
           .include?(node['kernel']['machine'])
       end
+
+      #
+      # Determine if the current architecture is s390x
+      #
+      # @return [Boolean]
+      #
+      def s390x?(node)
+        %w(s390x)
+          .include?(node['kernel']['machine'])
+      end
     end
 
     module DSL
@@ -138,6 +148,9 @@ class Chef
 
       # @see Chef::Sugar::Architecture#arm?
       def armhf?; Chef::Sugar::Architecture.armhf?(node); end
+
+      # @see Chef::Sugar::Architecture#s390x?
+      def s390x?; Chef::Sugar::Architecture.s390x?(node); end
 
     end
   end

@@ -111,4 +111,11 @@ describe Chef::Sugar::Architecture do
       expect(described_class.ppc64le?(node)).to be true
     end
   end
+
+  describe '#s390x?' do
+    it 'returns true when the system is s390x' do
+      node = { 'kernel' => { 'machine' => 's390x' } }
+      expect(described_class.s390x?(node)).to be true
+    end
+  end
 end
