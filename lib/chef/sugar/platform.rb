@@ -58,6 +58,10 @@ class Chef
           'raring'   => '13.04',
           'saucy'    => '13.10',
           'trusty'   => '14.04',
+          'utopic'   => '14.10',
+          'vivid'    => '15.04',
+          'wily'     => '15.10',
+          'xenial'   => '16.04',
         },
       }
 
