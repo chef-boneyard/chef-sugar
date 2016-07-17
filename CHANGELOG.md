@@ -2,6 +2,18 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v3.4.0 (2016-07-18)
+-------------------
+### Improvements
+- Add `virtual?` and `physical?` methods
+- Add Scaleway C1 server (arm arch) support
+- Add IMB s390x support
+- Add missing Ubuntu release names
+
+### Bug Fixes
+- Drop Ruby 2.0.0 support from Travis test matrix
+- Pin to Rack 1.6 (dev dep)
+
 v3.3.0 (2016-01-11)
 -------------------
 ### Improvements
