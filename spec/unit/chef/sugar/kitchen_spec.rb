@@ -5,7 +5,7 @@ describe Chef::Sugar::Kitchen do
 
   describe '#kitchen?' do
     it 'is true when the TEST_KITCHEN environment variable is set' do
-      ENV['TEST_KITCHEN'] = '1'
+      allow(ENV).to receive(:[]).with('TEST_KITCHEN').and_return('1')
       node = {}
       expect(described_class.kitchen?(node)).to be true
     end

@@ -34,9 +34,7 @@ class Chef
 
     module DSL
       # @see Chef::Sugar::Kitchen#kitchen?
-      def kitchen?
-        Chef::Sugar::Kitchen.kitchen?(node)
-      end
+      def kitchen?; Chef::Sugar::Kitchen.kitchen?(node); end
     end
   end
 end
