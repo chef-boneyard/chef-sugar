@@ -30,6 +30,7 @@ class Chef
     require_relative 'sugar/init'
     require_relative 'sugar/ip'
     require_relative 'sugar/kernel'
+    require_relative 'sugar/kitchen'
     require_relative 'sugar/node'
     require_relative 'sugar/platform'
     require_relative 'sugar/platform_family'
