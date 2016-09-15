@@ -22,10 +22,19 @@ describe Chef::Sugar::Init do
         .and_return("systemd")
 
       node = {}
-      expect(described_class.systemd?(node)).to be true 
+      expect(described_class.systemd?(node)).to be true
     end
 
     it 'is false when /proc/1/comm is not systemd' do
+      node = {}
+      expect(described_class.systemd?(node)).to be false
+    end
+
+    it 'is false when /proc/1/comm does not exist' do
+      allow(File).to receive(:exist?)
+        .with("/proc/1/comm")
+        .and_return(false)
+
       node = {}
       expect(described_class.systemd?(node)).to be false
     end
