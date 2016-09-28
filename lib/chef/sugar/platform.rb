@@ -40,6 +40,8 @@ class Chef
           'mountain_lion' => '10.8',
           'mavericks'     => '10.9',
           'yosemite'      => '10.10',
+          'el_capitan'    => '10.11',
+          'sierra'        => '10.12',
         },
         'solaris' => {
           '7'  => '5.7',
