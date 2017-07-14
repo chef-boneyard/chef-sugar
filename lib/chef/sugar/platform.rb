@@ -26,6 +26,7 @@ class Chef
           'squeeze' => '6',
           'wheezy'  => '7',
           'jessie'  => '8',
+          'stretch' => '9',
         },
         'linuxmint' => {
           'qiana'  => '17',
@@ -64,6 +65,7 @@ class Chef
           'vivid'    => '15.04',
           'wily'     => '15.10',
           'xenial'   => '16.04',
+          'zesty'    => '17.04',
         },
       }
 
