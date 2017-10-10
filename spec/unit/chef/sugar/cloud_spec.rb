@@ -134,4 +134,16 @@ describe Chef::Sugar::Cloud do
       expect(described_class.digitalocean?(node)).to be false
     end
   end
+
+  describe '#softlayer?' do
+    it 'is true when the node is on softlayer' do
+      node = { 'softlayer' => nil }
+      expect(described_class.softlayer?(node)).to be true
+    end
+
+    it 'is false when the node is not on softlayer' do
+      node = {}
+      expect(described_class.softlayer?(node)).to be false
+    end
+  end
 end

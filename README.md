@@ -103,6 +103,7 @@ end
 - `openstack?`
 - `cloudstack?`
 - `rackspace?`
+- `softlayer?`
 
 #### Examples
 ```ruby

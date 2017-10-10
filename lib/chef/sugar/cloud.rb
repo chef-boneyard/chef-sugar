@@ -139,6 +139,18 @@ class Chef
       def digitalocean?(node)
         node.key?('digital_ocean')
       end
+
+      #
+      # Return true if the current current node is in SoftLayer
+      #
+      # @param [Chef::Node] node
+      #   the node to check
+      #
+      # @return [Boolean]
+      #
+      def softlayer?(node)
+        node.key?('softlayer')
+      end
     end
 
     module DSL
@@ -172,6 +184,9 @@ class Chef
 
       # @see Chef::Sugar::Cloud#digitalocean?
       def digitalocean?; Chef::Sugar::Cloud.digitalocean?(node); end
+
+      # @see Chef::Sugar::Cloud#softlayer?
+      def softlayer?; Chef::Sugar::Cloud.softlayer?(node); end
     end
   end
 end
