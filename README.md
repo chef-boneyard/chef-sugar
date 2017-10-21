@@ -6,8 +6,7 @@ Chef Sugar
 [gem]: https://rubygems.org/gems/chef-sugar
 [travis]: http://travis-ci.org/sethvargo/chef-sugar
 
-Chef Sugar is a Gem & Chef Recipe that includes series of helpful sugar of the Chef core and other resources to make a cleaner, more lean recipe DSL, enforce DRY principles, and make writing Chef recipes an awesome experience!
-
+Chef Sugar is a Gem & Chef Recipe that includes series of helpful syntactic sugars on top of the Chef core and other resources to make a cleaner, more lean recipe DSL, enforce DRY principles, and make writing Chef recipes an awesome and fun experience!
 
 Installation
 ------------
