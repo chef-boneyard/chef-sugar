@@ -47,7 +47,7 @@ In a Library as a singleton:
 
 ```ruby
 # cookbook/libraries/default.rb
-def only_on_windows(█)
+def only_on_windows(&block)
   yield if Chef::Sugar::PlatformFamily.windows?(@node)
 end
 ```
@@ -58,7 +58,7 @@ In a Library as a Mixin:
 # cookbook/libraries/default.rb
 include Chef::Sugar::PlatformFamily
 
-def only_on_windows(█)
+def only_on_windows(&block)
   yield if windows?(@node)
 end
 ```
