@@ -111,6 +111,17 @@ class Chef
       end
 
       #
+      # Determine if the current architecture is AArch64
+      #
+      # @return [Boolean]
+      #
+      def aarch64?(node)
+        # Add more arm variants as needed here
+        %w(aarch64)
+          .include?(node['kernel']['machine'])
+      end
+
+      #
       # Determine if the current architecture is s390x
       #
       # @return [Boolean]
@@ -148,6 +159,9 @@ class Chef
 
       # @see Chef::Sugar::Architecture#arm?
       def armhf?; Chef::Sugar::Architecture.armhf?(node); end
+
+      # @see Chef::Sugar::Architecture#aarch64?
+      def aarch64?; Chef::Sugar::Architecture.aarch64?(node); end
 
       # @see Chef::Sugar::Architecture#s390x?
       def s390x?; Chef::Sugar::Architecture.s390x?(node); end

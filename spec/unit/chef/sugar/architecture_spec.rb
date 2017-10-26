@@ -86,6 +86,14 @@ describe Chef::Sugar::Architecture do
     end
   end
 
+  describe '#aarch64?' do
+    it 'returns true when the system is AArch64' do
+      node = { 'kernel' => { 'machine' => 'aarch64' } }
+      expect(described_class.intel?(node)).to be false
+      expect(described_class.aarch64?(node)).to be true
+    end
+  end
+
   describe '#sparc?' do
     it 'returns true when the system is SPARC sun4u' do
       node = { 'kernel' => { 'machine' => 'sun4u' } }
