@@ -16,3 +16,5 @@ EOH
 
 require          File.expand_path('../lib/chef/sugar/version', __FILE__)
 version          Chef::Sugar::VERSION
+
+gem "chef-sugar" if Gem::Requirement.new(">= 12.10.48").satisfied_by?(Gem::Version.new(Chef::VERSION))
