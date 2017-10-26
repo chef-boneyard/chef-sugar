@@ -1,16 +1,12 @@
-Chef Sugar
-==========
-[![Gem Version](http://img.shields.io/gem/v/chef-sugar.svg?style=flat-square)][gem]
-[![Build Status](http://img.shields.io/travis/sethvargo/chef-sugar.svg?style=flat-square)][travis]
+# Chef Sugar
 
-[gem]: https://rubygems.org/gems/chef-sugar
-[travis]: http://travis-ci.org/sethvargo/chef-sugar
+[![Gem Version](http://img.shields.io/gem/v/chef-sugar.svg?style=flat-square)][gem] [![Build Status](http://img.shields.io/travis/sethvargo/chef-sugar.svg?style=flat-square)][travis]
 
 Chef Sugar is a Gem & Chef Recipe that includes series of helpful syntactic sugars on top of the Chef core and other resources to make a cleaner, more lean recipe DSL, enforce DRY principles, and make writing Chef recipes an awesome and fun experience!
 
-Installation
-------------
-If you want to develop/hack on chef-sugar, please see the Contributing.md.
+## Installation
+
+If you want to develop/hack on chef-sugar, please see the CONTRIBUTING.md.
 
 If you are using Berkshelf, add `chef-sugar` to your `Berksfile`:
 
@@ -24,9 +20,8 @@ Otherwise, you can use `knife` or download the tarball directly from the communi
 knife cookbook site install chef-sugar
 ```
 
+## Usage
 
-Usage
------
 In order to use Chef Sugar in your Chef Recipes, you'll first need to include it:
 
 ```ruby
@@ -38,6 +33,7 @@ Alternatively you can put it in a base role or recipe and it will be included su
 Requiring the Chef Sugar Gem will automatically extend the Recipe DSL, `Chef::Resource`, and `Chef::Provider` with helpful convenience methods.
 
 ### Module Method
+
 If you are working outside of the Recipe DSL, you can use the module methods instead of the Recipe DSL. In general, the module methods have the same name as their Recipe-DSL counterparts, but require the node object as a parameter. For example:
 
 In a Recipe:
@@ -51,7 +47,7 @@ In a Library as a singleton:
 
 ```ruby
 # cookbook/libraries/default.rb
-def only_on_windows(&block)
+def only_on_windows(█)
   yield if Chef::Sugar::PlatformFamily.windows?(@node)
 end
 ```
@@ -62,17 +58,17 @@ In a Library as a Mixin:
 # cookbook/libraries/default.rb
 include Chef::Sugar::PlatformFamily
 
-def only_on_windows(&block)
+def only_on_windows(█)
   yield if windows?(@node)
 end
 ```
 
+## API
 
-API
----
 **Note:** For the most extensive API documentation, please see the YARD documentation.
 
 ### Architecture
+
 **Note:** Some of the architecture commands begin with an underscore (`_`) because Ruby does not permit methods to start with a numeric.
 
 - `_64_bit?`
@@ -84,6 +80,7 @@ API
 - `powerpc?`
 
 #### Examples
+
 ```ruby
 execute 'build[my binary]' do
   command '...'
@@ -92,6 +89,7 @@ end
 ```
 
 ### Cloud
+
 - `azure?`
 - `cloud?`
 - `digitalocean?`
@@ -105,6 +103,7 @@ end
 - `softlayer?`
 
 #### Examples
+
 ```ruby
 template '/tmp/config' do
   variables(
@@ -115,6 +114,7 @@ end
 ```
 
 ### Core Extensions
+
 **Note:** Core extensions are **not** included by default. You must require the `chef/sugar/core_extensions` module manually to gain access to these APIs:
 
 ```ruby
@@ -127,6 +127,7 @@ require 'chef/sugar/core_extensions'
 - `Object#blank?`
 
 #### Examples
+
 ```ruby
 # Checking version constraints
 '1.0.0'.satisfies?('~> 1.0') #=> true
@@ -140,11 +141,13 @@ require 'chef/sugar/core_extensions'
 ```
 
 ### Data Bag
+
 - `encrypted_data_bag_item` - a handy DSL method for loading encrypted data bag items the same way you load a regular data bag item; this requires `Chef::Config[:encrypted_data_bag_secret]` is set!
 - `encrypted_data_bag_item_for_environment` - find the encrypted data bag entry for the current node's Chef environment.
 - `data_bag_item_for_environment` - find the data bag entry for the current node's Chef environment.
 
 #### Examples
+
 ```ruby
 encrypted_data_bag_item('accounts', 'hipchat')
 ```
@@ -158,11 +161,13 @@ data_bag_item_for_environment('accounts', 'github')
 ```
 
 ### Docker
+
 Chef Sugar looks for hints to see if the node being converged is a Docker container. When [Ohai supports checking other nodes](https://github.com/opscode/ohai/pull/428), Chef Sugar will automatically pick up the information.
 
 - `docker?`
 
 #### Examples
+
 ```ruby
 template '/runme' do
   only_if { docker?(node) }
@@ -170,6 +175,7 @@ end
 ```
 
 ### Attributes
+
 Chef Sugar adds more Chef-like DSL to attribute definitions. Instead of using the Ruby hash syntax, you can define attributes using nested namespaces. This DSL may be more friendly to non-Ruby developers. It can safely be mixed-and-matched with the standard syntax.
 
 ```ruby
@@ -198,11 +204,13 @@ end
 ```
 
 ### Constraints
+
 - `constraints` - create a new constraint (or requirement) that can be used to test version validations.
 - `chef_version` - (DSL only) a wrapper for `version(Chef::VERSION)`
 - `version` - create a new version that can be used to test constraint validation.
 
 #### Examples
+
 ```ruby
 # Check if a version is satisfied by a constraint
 version('1.2.3').satisfies?('~> 1.2.0')
@@ -227,14 +235,18 @@ end
 ```
 
 ### Kernel
+
 - `require_chef_gem` - "safely" require a gem. Loading a gem with Chef is sometimes difficult and confusing. The errors that Chef produces are also sometimes not very intuitive. In the event you require a gem to exist on the system, you can use `require_chef_gem`, which will attempt to require the gem and then produce helpful output if the gem is not installed:
 
-        Chef could not load the gem `#{name}'! You may need to install the gem
-        manually with `gem install #{name}', or include a recipe before you can
-        use this resource. Please consult the documentation for this cookbook
-        for proper usage.
+  ```
+    Chef could not load the gem `#{name}'! You may need to install the gem
+    manually with `gem install #{name}', or include a recipe before you can
+    use this resource. Please consult the documentation for this cookbook
+    for proper usage.
+  ```
 
 #### Examples
+
 ```ruby
 # LWRP
 require_chef_gem 'pry'
@@ -251,11 +263,13 @@ end
 ```
 
 ### Init
+
 - `systemd?` - detect if init system is systemd
 - `upstart?` - detect if init system is upstart
 - `runit?` - detect if init system is runit
 
 #### Examples
+
 ```ruby
 systemd_service 'my-service' do
   description 'My Service'
@@ -276,9 +290,11 @@ end
 ```
 
 ### IP
+
 - `best_ip_for` - determine the best IP address for the given "other" node, preferring local IP addresses over public ones.
 
 #### Examples
+
 ```ruby
 redis = search('node', 'role:redis').first
 
@@ -298,6 +314,7 @@ Additional methods for the `node` object
 - `in?` - determine if the node is in the given Chef environment.
 
 #### Examples
+
 ```ruby
 credentials = if node.in?('production')
                 Chef::EncryptedDataBag.new('...')
@@ -311,6 +328,7 @@ node.deep_fetch('apache2', 'config', 'root') => node['apache2']['config']['root'
 ```
 
 ### Platform
+
 - `amazon_linux?`
 - `centos?`
 - `linux_mint?`
@@ -326,7 +344,7 @@ node.deep_fetch('apache2', 'config', 'root') => node['apache2']['config']['root'
 - `nexus?`
 - `ios_xr?`
 
-There are also a series of dynamically defined matchers that map named operating system release versions and comparison operators in the form "#{platform}\_#{operator}\_#{name}?". For example:
+There are also a series of dynamically defined matchers that map named operating system release versions and comparison operators in the form "#{platform}_#{operator}_#{name}?". For example:
 
 - `debian_after_squeeze?`
 - `linuxmint_after_or_at_olivia?`
@@ -344,6 +362,7 @@ puts Chef::Sugar::Platform.instance_methods
 ```
 
 #### Examples
+
 ```ruby
 if ubuntu?
   execute 'apt-get update'
@@ -351,6 +370,7 @@ end
 ```
 
 ### Platform Family
+
 - `arch_linux?`
 - `debian?`
 - `fedora?`
@@ -366,6 +386,7 @@ end
 - `wrlinux?`
 
 #### Examples
+
 ```ruby
 node['attribute'] = if windows?
                       'C:\Foo\BarDrive'
@@ -375,17 +396,20 @@ node['attribute'] = if windows?
 ```
 
 ### Ruby
+
 **Note:** The applies to the Ruby found at `node['languages']['ruby']`.
 
 - `ruby_20?`
 - `ruby_19?`
 
 #### Examples
+
 ```ruby
 log 'This has been known to fail on Ruby 2.0' if ruby_20?
 ```
 
 ### Run Context
+
 - `includes_recipe?` - determines if the current run context includes the recipe
 
 ```ruby
@@ -397,6 +421,7 @@ end
 ```
 
 ### Shell
+
 - `which`
 - `dev_null`
 - `installed?`
@@ -404,6 +429,7 @@ end
 - `version_for`
 
 #### Examples
+
 ```ruby
 log "Using `mongo` at `#{which('mongo')}`"
 
@@ -420,9 +446,11 @@ log "Skipping git install, version is at #{version_for('mongo', '-v')}"
 ```
 
 ### Vagrant
+
 - `vagrant?`
 
 #### Examples
+
 ```ruby
 http_request 'http://...' do
   not_if { vagrant? }
@@ -430,6 +458,7 @@ end
 ```
 
 ### Virtualization
+
 - `kvm?`
 - `lxc?`
 - `virtualbox?`
@@ -437,6 +466,7 @@ end
 - `openvz?`
 
 #### Examples
+
 ```ruby
 service 'ntpd' do
   action [:enable, :start]
@@ -445,11 +475,13 @@ end
 ```
 
 ### Filters
+
 - `at_compile_time` - accepts a block of resources to run at compile time
 - `before` - insert resource in the collection before the given resource
 - `after` - insert resource in the collection after the given resource
 
 #### Examples
+
 ```ruby
 at_compile_time do
   package 'apache2'
@@ -473,9 +505,8 @@ after 'service[apache2]' do
 end
 ```
 
+## License & Authors
 
-License & Authors
------------------
 - Author: Seth Vargo (sethvargo@gmail.com)
 
 ```text
@@ -493,3 +524,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+[gem]: https://rubygems.org/gems/chef-sugar
+[travis]: http://travis-ci.org/sethvargo/chef-sugar
