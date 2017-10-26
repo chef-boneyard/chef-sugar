@@ -28,6 +28,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
 
   spec.add_development_dependency 'chefspec',        '~> 7.0'
-  spec.add_development_dependency 'test-kitchen',    '~> 1.18'
+  spec.add_development_dependency 'test-kitchen',    '~> 1.16'
   spec.add_development_dependency 'kitchen-vagrant', '~> 1.2'
 end
