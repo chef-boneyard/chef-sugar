@@ -4,6 +4,21 @@
 
 Chef Sugar is a Gem & Chef Recipe that includes series of helpful syntactic sugars on top of the Chef core and other resources to make a cleaner, more lean recipe DSL, enforce DRY principles, and make writing Chef recipes an awesome and fun experience!
 
+## Requirements
+
+### Platforms
+
+- any platform
+
+
+### Chef
+
+- Chef 12.10+
+
+### Cookbooks
+
+- none
+
 ## Installation
 
 If you want to develop/hack on chef-sugar, please see the CONTRIBUTING.md.
@@ -22,13 +37,7 @@ knife cookbook site install chef-sugar
 
 ## Usage
 
-In order to use Chef Sugar in your Chef Recipes, you'll first need to include it:
-
-```ruby
-include_recipe 'chef-sugar::default'
-```
-
-Alternatively you can put it in a base role or recipe and it will be included subsequently.
+Simply depend on this cookbook in the metadata of your cookbook and the gem will be installed and required..
 
 Requiring the Chef Sugar Gem will automatically extend the Recipe DSL, `Chef::Resource`, and `Chef::Provider` with helpful convenience methods.
 
