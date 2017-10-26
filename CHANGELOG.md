@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+## v3.6.0 (2017-10-26)
+
+- Add Ubuntu zesty and debian stretch detection
+- Add softlayer? helper
+- Add aarch64? helper
+
 ## v3.5.0 (2016-07-12)
 
 - Improve the systemd check to not fail on older kernels or Windows hosts
