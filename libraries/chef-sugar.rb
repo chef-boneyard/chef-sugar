@@ -1,1 +1,1 @@
-require "chef-sugar"
+require 'chef/sugar'
