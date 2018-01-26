@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/sethvargo/chef-sugar'
   spec.license       = 'Apache 2.0'
 
-  spec.required_ruby_version = '>= 2.1'
+  spec.required_ruby_version = '>= 2.2.2'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -25,10 +25,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.3'
-  spec.add_development_dependency 'rack', '~> 1.6'
   spec.add_development_dependency 'rake'
 
-  spec.add_development_dependency 'chefspec',        '~> 4.2'
-  spec.add_development_dependency 'test-kitchen',    '~> 1.3'
-  spec.add_development_dependency 'kitchen-vagrant', '~> 0.15'
+  spec.add_development_dependency 'chefspec',        '~> 7.0'
+  spec.add_development_dependency 'test-kitchen',    '~> 1.16'
+  spec.add_development_dependency 'kitchen-vagrant', '~> 1.2'
 end
