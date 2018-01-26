@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
 
-  spec.add_development_dependency 'chefspec',        '~> 7.0'
-  spec.add_development_dependency 'test-kitchen',    '~> 1.16'
-  spec.add_development_dependency 'kitchen-vagrant', '~> 1.2'
+  spec.add_development_dependency 'chefspec'
+  spec.add_development_dependency 'test-kitchen'
+  spec.add_development_dependency 'kitchen-vagrant'
 end
