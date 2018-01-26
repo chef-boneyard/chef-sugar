@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+## v4.0.0 (2018-01-26)
+
+- Require Ruby 2.2 or later and Chef 12.10 or later
+- Cookbook now installs the chef-sugar gem via a metadata installation so chef-sugar::default on your runlist is no longer needed
+- Added additional metadata to the cookbook: supports, issue_url, source_url, chef_version.
+- Requirements improved in the readme
+
 ## v3.6.0 (2017-10-26)
 
 - Add Ubuntu zesty and debian stretch detection
