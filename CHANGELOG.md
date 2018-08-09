@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+## v4.0.1 (2018-08-09)
+
+- Add new Debian, Mint, macOS codenames 
+- Add new Ubuntu codenames: artful, bionic, cosmic
+
 ## v4.0.0 (2018-01-26)
 
 - Require Ruby 2.2 or later and Chef 12.10 or later
