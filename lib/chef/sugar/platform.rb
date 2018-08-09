@@ -27,8 +27,11 @@ class Chef
           'wheezy'  => '7',
           'jessie'  => '8',
           'stretch' => '9',
+          'buster'  => '10',
         },
         'linuxmint' => {
+          'tara'   => '19',
+          'sarah'  => '18',
           'qiana'  => '17',
           'petra'  => '16',
           'olivia' => '15',
@@ -43,6 +46,8 @@ class Chef
           'yosemite'      => '10.10',
           'el_capitan'    => '10.11',
           'sierra'        => '10.12',
+          'high_sierra'   => '10.13',
+          'mojave'        => '10.14',
         },
         'solaris' => {
           '7'  => '5.7',
