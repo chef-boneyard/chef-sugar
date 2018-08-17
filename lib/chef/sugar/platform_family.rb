@@ -164,16 +164,7 @@ class Chef
       # @return [Boolean]
       #
       def linux?(node)
-        %w(
-          arch
-          debian
-          fedora
-          gentoo
-          rhel
-          slackware
-          suse
-          wrlinux
-        ).include?(node['platform_family'])
+        node['os'] == 'linux'
       end
     end
 
