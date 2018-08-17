@@ -2,9 +2,13 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+## v4.1.0 (2018-08-16)
+
+- Improve the detection of linux hosts with the linux? helper. Amazon Linux and obscure distros will now be properly detected.
+
 ## v4.0.1 (2018-08-09)
 
-- Add new Debian, Mint, macOS codenames 
+- Add new Debian, Mint, macOS codenames
 - Add new Ubuntu codenames: artful, bionic, cosmic
 
 ## v4.0.0 (2018-01-26)
