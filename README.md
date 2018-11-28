@@ -358,6 +358,7 @@ There are also a series of dynamically defined matchers that map named operating
 - `debian_after_squeeze?`
 - `linuxmint_after_or_at_olivia?`
 - `mac_os_x_lion?`
+- `centos_final?`
 - `ubuntu_before_lucid?`
 - `ubuntu_before_or_at_maverick?`
 - `solaris_10?`

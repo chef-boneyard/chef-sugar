@@ -289,6 +289,18 @@ describe Chef::Sugar::Platform do
       end
     end
 
+    describe '#centos_final?' do
+      it 'returns true when the version is a subset of the major' do
+        node = { 'platform' => 'centos', 'platform_version' => '6.8' }
+        expect(described_class.centos_final?(node)).to be true
+      end
+
+      it 'returns false when the version is not the major' do
+        node = { 'platform' => 'centos', 'platform_version' => '7.4' }
+        expect(described_class.centos_final?(node)).to be false
+      end
+    end
+
     describe '#debian_wheezy?' do
       it 'returns true when the version is a subset of the major' do
         node = { 'platform' => 'debian', 'platform_version' => '7.1' }
