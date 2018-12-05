@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+## v4.2.0 (2018-12-05)
+
+- Added a new parallels? helper
+- Added support for the Raspberry Pi 1 and Zero to armhf? helper
+- Added a centos_final? helper
+
 ## v4.1.0 (2018-08-16)
 
 - Improve the detection of linux hosts with the linux? helper. Amazon Linux and obscure distros will now be properly detected.
