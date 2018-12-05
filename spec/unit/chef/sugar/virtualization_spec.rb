@@ -37,6 +37,23 @@ describe Chef::Sugar::Virtualization do
     end
   end
 
+  describe '#parallels?' do
+    it 'returns true when the machine is under parallels' do
+      node = { 'virtualization' => { 'system' => 'Parallels' } }
+      expect(described_class.parallels?(node)).to be true
+    end
+
+    it 'returns false when the virtual machine is not under parallels' do
+      node = { 'virtualization' => { 'system' => 'kvm' } }
+      expect(described_class.parallels?(node)).to be false
+    end
+
+    it 'returns false when the machine is not virtual' do
+      node = {}
+      expect(described_class.parallels?(node)).to be false
+    end
+  end
+
   describe '#virtualbox?' do
     it 'returns true when the machine is under virtualbox' do
       node = { 'virtualization' => { 'system' => 'vbox' } }

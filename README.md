@@ -471,6 +471,7 @@ end
 
 - `kvm?`
 - `lxc?`
+- `parallels?`
 - `virtualbox?`
 - `vmware?`
 - `openvz?`

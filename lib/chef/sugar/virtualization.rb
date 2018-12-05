@@ -46,6 +46,19 @@ class Chef
       end
 
       #
+      # Determine if the current node is running under Parallels Desktop.
+      #
+      # @param [Chef::Node] node
+      #
+      # @return [Boolean]
+      #   true if the machine is currently running under Parallels Desktop, false
+      #   otherwise
+      #
+      def parallels?(node)
+        node.key?('virtualization') && node['virtualization']['system'] == 'Parallels'
+      end
+
+      #
       # Determine if the current node is running under VirtualBox.
       #
       # @param [Chef::Node] node
@@ -85,7 +98,7 @@ class Chef
       end
 
       def virtual?(node)
-        openvz?(node) || vmware?(node) || virtualbox?(node) || lxc?(node) || kvm?(node)
+        openvz?(node) || vmware?(node) || virtualbox?(node) || parallels?(node) || lxc?(node) || kvm?(node)
       end
 
       def physical?(node)
@@ -95,25 +108,44 @@ class Chef
 
     module DSL
       # @see Chef::Sugar::Virtualization#kvm?
-      def kvm?; Chef::Sugar::Virtualization.kvm?(node); end
+      def kvm?
+        Chef::Sugar::Virtualization.kvm?(node)
+      end
 
       # @see Chef::Sugar::Virtualization#lxc?
-      def lxc?; Chef::Sugar::Virtualization.lxc?(node); end
+      def lxc?
+        Chef::Sugar::Virtualization.lxc?(node)
+      end
+
+      # @see Chef::Sugar::Virtualization#parallels?
+      def parallels?
+        Chef::Sugar::Virtualization.parallels?(node)
+      end
 
       # @see Chef::Sugar::Virtualization#virtualbox?
-      def virtualbox?; Chef::Sugar::Virtualization.virtualbox?(node); end
+      def virtualbox?
+        Chef::Sugar::Virtualization.virtualbox?(node)
+      end
 
       # @see Chef::Sugar::Virtualization#vmware?
-      def vmware?; Chef::Sugar::Virtualization.vmware?(node); end
+      def vmware?
+        Chef::Sugar::Virtualization.vmware?(node)
+      end
 
       # @see Chef::Sugar::Virtualization#openvz?
-      def openvz?; Chef::Sugar::Virtualization.openvz?(node); end
+      def openvz?
+        Chef::Sugar::Virtualization.openvz?(node)
+      end
 
       # @see Chef::Sugar::Virtualization#virtual?
-      def virtual?; Chef::Sugar::Virtualization.virtual?(node); end
-      
+      def virtual?
+        Chef::Sugar::Virtualization.virtual?(node)
+      end
+
       # @see Chef::Sugar::Virtualization#physical?
-      def physical?; Chef::Sugar::Virtualization.physical?(node); end
+      def physical?
+        Chef::Sugar::Virtualization.physical?(node)
+      end
     end
   end
 end
