@@ -106,7 +106,7 @@ class Chef
       #
       def armhf?(node)
         # Add more arm variants as needed here
-        %w(armv7l)
+        %w(armv6l armv7l)
           .include?(node['kernel']['machine'])
       end
 
