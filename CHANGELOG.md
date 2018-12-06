@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+## v4.2.1 (2018-12-06)
+
+- Repackaged with an older stove to remove the metadata.rb on the Supermarket for older chef-client releases
+
 ## v4.2.0 (2018-12-05)
 
 - Added a new parallels? helper
