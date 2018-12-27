@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+## v5.0.0 (2018-12-26)
+
+- BREAKING CHANGE: Require Chef 13 or later
+- Trim out test files and the cookbook from the gem artifact to slim install size
+
 ## v4.2.1 (2018-12-06)
 
 - Repackaged with an older stove to remove the metadata.rb on the Supermarket for older chef-client releases
