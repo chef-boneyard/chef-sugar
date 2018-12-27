@@ -20,5 +20,5 @@ version          Chef::Sugar::VERSION
 supports     'any'
 issues_url   'https://github.com/sethvargo/chef-sugar/issues'
 source_url   'https://github.com/sethvargo/chef-sugar'
-chef_version '>= 12.10.48' if respond_to?(:chef_version)
+chef_version '>= 13.0'
 gem          'chef-sugar'

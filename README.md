@@ -13,7 +13,7 @@ Chef Sugar is a Gem & Chef Recipe that includes series of helpful syntactic suga
 
 ### Chef
 
-- Chef 12.10+
+- Chef 13.0+
 
 ### Cookbooks
 
