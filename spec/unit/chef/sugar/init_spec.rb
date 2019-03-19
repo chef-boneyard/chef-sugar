@@ -16,23 +16,19 @@ describe Chef::Sugar::Init do
   end
 
   describe '#systemd?' do
-    it 'is true when /proc/1/comm is systemd' do
-      allow(IO).to receive(:read)
-        .with("/proc/1/comm")
-        .and_return("systemd")
+    systemctl_path = '/bin/systemctl'
+    it "is true when #{systemctl_path} exists" do
+      allow(File).to receive(:exist?)
+        .with(systemctl_path)
+        .and_return(true)
 
       node = {}
       expect(described_class.systemd?(node)).to be true
     end
 
-    it 'is false when /proc/1/comm is not systemd' do
-      node = {}
-      expect(described_class.systemd?(node)).to be false
-    end
-
-    it 'is false when /proc/1/comm does not exist' do
+    it "is false when #{systemctl_path} does not exist" do
       allow(File).to receive(:exist?)
-        .with("/proc/1/comm")
+        .with(systemctl_path)
         .and_return(false)
 
       node = {}

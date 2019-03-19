@@ -25,8 +25,7 @@ class Chef
       # @return [Boolean]
       #
       def systemd?(node)
-        file = '/proc/1/comm'
-        File.exist?(file) && IO.read(file).chomp == 'systemd'
+        File.exist?('/bin/systemctl')
       end
 
       #
