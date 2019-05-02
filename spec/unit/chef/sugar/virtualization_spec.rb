@@ -39,7 +39,7 @@ describe Chef::Sugar::Virtualization do
 
   describe '#parallels?' do
     it 'returns true when the machine is under parallels' do
-      node = { 'virtualization' => { 'system' => 'Parallels' } }
+      node = { 'virtualization' => { 'system' => 'parallels' } }
       expect(described_class.parallels?(node)).to be true
     end
 

@@ -55,7 +55,7 @@ class Chef
       #   otherwise
       #
       def parallels?(node)
-        node.key?('virtualization') && node['virtualization']['system'] == 'Parallels'
+        node.key?('virtualization') && node['virtualization']['system'] == 'parallels'
       end
 
       #
