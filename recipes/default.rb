@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-Chef::Log.warn('chef-sugar::default no longer needs to be included in your runlist. Instead simply depend on the chef-sugar cookbook and the gem will be intalled and loaded automatically.')
+Chef::Log.warn('chef-sugar::default no longer needs to be included in your runlist. Instead simply depend on the chef-sugar cookbook and the gem will be installed and loaded automatically.')
