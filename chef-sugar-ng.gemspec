@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
                        'recipes an awesome experience!'
   spec.summary       = 'A collection of helper methods and modules that '     \
                        'make working with Chef recipes awesome.'
-  spec.homepage      = 'https://github.com/sethvargo/chef-sugar'
+  spec.homepage      = 'https://github.com/chef/chef-sugar'
   spec.license       = 'Apache 2.0'
 
 
