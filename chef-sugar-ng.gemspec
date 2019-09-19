@@ -6,7 +6,7 @@ require 'chef/sugar/version'
 Gem::Specification.new do |spec|
   spec.name          = 'chef-sugar-ng'
   spec.version       = Chef::Sugar::VERSION
-  spec.authors       = ['Chef Software, Inc.']
+  spec.authors       = ['Seth Vargo']
   spec.email         = ['sethvargo@gmail.com']
   spec.description   = 'A series of helpful sugar of the Chef core and ' \
                        'other resources to make a cleaner, more lean recipe ' \
