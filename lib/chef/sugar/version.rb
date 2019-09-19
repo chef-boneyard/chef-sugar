@@ -16,6 +16,6 @@
 
 class Chef
   module Sugar
-    VERSION = '5.0.1'
+    VERSION = '5.0.2'
   end
 end
