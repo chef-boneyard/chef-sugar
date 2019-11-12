@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+require_relative "deprecation"
+
 class Chef
   class Node
     class AttributeDoesNotExistError < StandardError
@@ -36,6 +38,7 @@ EOH
     # @return [Boolean]
     #
     def in?(environment)
+      Chef::Sugar::Deprecation.deprecated "the chef-sugar node.in? method is deprecated"
       environment === chef_environment
     end
 
@@ -49,6 +52,7 @@ EOH
     # @see [Node#deep_fetch!]
     #
     def deep_fetch(*keys)
+      Chef::Sugar::Deprecation.deprecated "the chef-sugar deep_fetch method is deprecated and should be replaced by node.read"
       deep_fetch!(*keys)
     rescue NoMethodError, AttributeDoesNotExistError
       nil
@@ -71,6 +75,7 @@ EOH
     # @return [Object]
     #
     def deep_fetch!(*keys)
+      Chef::Sugar::Deprecation.deprecated "the chef-sugar deep_fetch method is deprecated and should be replaced by node.read!"
       keys.map!(&:to_s)
 
       keys.inject(attributes.to_hash) do |hash, key|
@@ -133,6 +138,7 @@ EOH
     #   to prevent accidential method chaining if the block isn't closed
     #
     def namespace(*args, &block)
+      Chef::Sugar::Deprecation.deprecated "the chef-sugar attribute namespace setting is deprecated, please use traditional chef attribute notation"
       @namespace_options = namespace_options.merge(args.last.is_a?(Hash) ? args.pop : {})
 
       keys = args.map(&:to_s)
