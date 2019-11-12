@@ -8,7 +8,12 @@ group :debug do
 end
 
 group :test do
-  gem "chefspec", "~> 7.4.0" # supports Chef 13+ aka ruby 2.3+
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.5")
+    gem "chefspec", "~> 7.4.0" # supports Chef 13+ aka ruby 2.3+
+    gem "chef", "~> 13" # also needed to support Ruby 2.3
+  else
+    gem "chefspec"
+  end
   gem "rake"
 end
 
