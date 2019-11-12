@@ -2,17 +2,18 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
-<!-- latest_release 5.1.0 -->
-## [v5.1.0](https://github.com/chef/chef-sugar/tree/v5.1.0) (2019-11-12)
+<!-- latest_release 5.1.1 -->
+## [v5.1.1](https://github.com/chef/chef-sugar/tree/v5.1.1) (2019-11-12)
 
 #### Merged Pull Requests
-- Add github templates and a code of conduct [#9](https://github.com/chef/chef-sugar/pull/9) ([tas50](https://github.com/tas50))
+- Beginning of chef-sugar deprecation [#10](https://github.com/chef/chef-sugar/pull/10) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Beginning of chef-sugar deprecation [#10](https://github.com/chef/chef-sugar/pull/10) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.1.1 -->
 - Add github templates and a code of conduct [#9](https://github.com/chef/chef-sugar/pull/9) ([tas50](https://github.com/tas50)) <!-- 5.1.0 -->
 - Wire up Expeditor and support both chef-sugar and chef-sugar-ng [#8](https://github.com/chef/chef-sugar/pull/8) ([tas50](https://github.com/tas50)) <!-- 5.0.4 -->
 <!-- release_rollup -->
