@@ -13,8 +13,7 @@ For the most up-to-date information and documentation, please visit the [Chef
 Sugar project page on GitHub](https://github.com/chef/chef-sugar).
 EOH
 
-require          File.expand_path('../lib/chef/sugar/version', __FILE__)
-version          Chef::Sugar::VERSION
+version      '5.1.0'
 
 supports     'any'
 issues_url   'https://github.com/chef/chef-sugar/issues'
