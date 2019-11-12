@@ -19,22 +19,27 @@ class Chef
     module Docker
       extend self
 
-      #
-      # Returns true if the current node is a docker container.
-      #
-      # @param [Chef::Node] node
-      #   the node to check
-      #
-      # @return [Boolean]
-      #
-      def docker?(node)
-        File.exist?('/.dockerinit') || File.exist?('/.dockerenv')
+      # these helpers have been moved to core chef
+      unless Gem::Requirement.new(">= 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
+        #
+        # Returns true if the current node is a docker container.
+        #
+        # @param [Chef::Node] node
+        #   the node to check
+        #
+        # @return [Boolean]
+        #
+        def docker?(node)
+          File.exist?('/.dockerinit') || File.exist?('/.dockerenv')
+        end
       end
     end
 
     module DSL
-      # @see Chef::Sugar::Docker#docker?
-      def docker?; Chef::Sugar::Docker.docker?(node); end
+      unless Gem::Requirement.new(">= 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
+        # @see Chef::Sugar::Docker#docker?
+        def docker?; Chef::Sugar::Docker.docker?(node); end
+      end
     end
   end
 end
