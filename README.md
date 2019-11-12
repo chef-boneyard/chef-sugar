@@ -1,6 +1,6 @@
 # Chef Sugar
 
-[![Gem Version](http://img.shields.io/gem/v/chef-sugar.svg?style=flat-square)][gem] [![Build Status](http://img.shields.io/travis/sethvargo/chef-sugar.svg?style=flat-square)][travis]
+[![Gem Version](http://img.shields.io/gem/v/chef-sugar.svg?style=flat-square)][gem]
 
 Chef Sugar is a Gem & Chef Recipe that includes series of helpful syntactic sugars on top of the Chef core and other resources to make a cleaner, more lean recipe DSL, enforce DRY principles, and make writing Chef recipes an awesome and fun experience!
 
