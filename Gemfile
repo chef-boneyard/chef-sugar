@@ -8,8 +8,11 @@ group :debug do
 end
 
 group :test do
-  gem "chefspec"
-  gem "kitchen-vagrant"
+  gem "chefspec", "~> 7.4.0" # supports Chef 13+ aka ruby 2.3+
   gem "rake"
+end
+
+group :kitchen do
+  gem "kitchen-vagrant"
   gem "test-kitchen"
 end
