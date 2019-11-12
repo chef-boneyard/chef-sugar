@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
-gemspec name: 'stove-ng'
-
-gemspec
+gemspec name: 'chef-sugar-ng'
 
 group :debug do
   gem "pry"
