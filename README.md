@@ -537,4 +537,3 @@ limitations under the License.
 ```
 
 [gem]: https://rubygems.org/gems/chef-sugar
-[travis]: http://travis-ci.org/sethvargo/chef-sugar
