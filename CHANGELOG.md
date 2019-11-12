@@ -2,10 +2,18 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## v5.0.1 (2019-03-13)
 
 - Modifies the behavior of `systemd?` so that it works equally well on physical/virtual
 machines as well as within containers.
+<!-- latest_stable_release -->
 
 ## v5.0.0 (2018-12-26)
 
