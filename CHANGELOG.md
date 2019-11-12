@@ -2,17 +2,18 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
-<!-- latest_release 5.1.4 -->
-## [v5.1.4](https://github.com/chef/chef-sugar/tree/v5.1.4) (2019-11-12)
+<!-- latest_release 5.1.5 -->
+## [v5.1.5](https://github.com/chef/chef-sugar/tree/v5.1.5) (2019-11-12)
 
 #### Merged Pull Requests
-- Fix metadata.rb version updatig logic and use SPDX compliant license strings [#14](https://github.com/chef/chef-sugar/pull/14) ([tas50](https://github.com/tas50))
+- Additional Chef-15 greenification [#13](https://github.com/chef/chef-sugar/pull/13) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Additional Chef-15 greenification [#13](https://github.com/chef/chef-sugar/pull/13) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.1.5 -->
 - Fix metadata.rb version updatig logic and use SPDX compliant license strings [#14](https://github.com/chef/chef-sugar/pull/14) ([tas50](https://github.com/tas50)) <!-- 5.1.4 -->
 - Switch gemfile back to chef-sugar [#12](https://github.com/chef/chef-sugar/pull/12) ([tas50](https://github.com/tas50)) <!-- 5.1.3 -->
 - Use Expeditor to set the version in the metadata.rb file [#11](https://github.com/chef/chef-sugar/pull/11) ([tas50](https://github.com/tas50)) <!-- 5.1.2 -->
