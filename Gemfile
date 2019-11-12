@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gemspec name: 'chef-sugar-ng'
+gemspec name: 'chef-sugar'
 
 group :debug do
   gem "pry"
