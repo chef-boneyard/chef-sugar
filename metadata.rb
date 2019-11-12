@@ -13,7 +13,7 @@ For the most up-to-date information and documentation, please visit the [Chef
 Sugar project page on GitHub](https://github.com/chef/chef-sugar).
 EOH
 
-version      '5.1.0'
+version '5.1.0'
 
 supports     'any'
 issues_url   'https://github.com/chef/chef-sugar/issues'
