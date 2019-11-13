@@ -20,7 +20,7 @@ class Chef
       extend self
 
       # these helpers have been moved to core chef
-      unless Gem::Requirement.new(">= 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
 
         #
         # Determine if the current node is a member of the arch family.
