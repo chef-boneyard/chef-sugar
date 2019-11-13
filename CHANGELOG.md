@@ -2,10 +2,18 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
-<!-- latest_release -->
+<!-- latest_release 5.1.9 -->
+## [v5.1.9](https://github.com/chef/chef-sugar/tree/v5.1.9) (2019-11-13)
+
+#### Merged Pull Requests
+- Don&#39;t fail if Chef::VERSION isn&#39;t defined [#18](https://github.com/chef/chef-sugar/pull/18) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.1.8 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Don&#39;t fail if Chef::VERSION isn&#39;t defined [#18](https://github.com/chef/chef-sugar/pull/18) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.1.9 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
