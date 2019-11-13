@@ -20,7 +20,7 @@ class Chef
       extend self
 
       # these helpers have been moved to core-chef
-      unless Gem::Requirement.new(">= 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
         #
         # Returns true if the current node is provisioned by Test Kitchen.
         #
@@ -36,7 +36,7 @@ class Chef
     end
 
     module DSL
-      unless Gem::Requirement.new(">= 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
         # @see Chef::Sugar::Kitchen#kitchen?
         def kitchen?; Chef::Sugar::Kitchen.kitchen?(node); end
       end

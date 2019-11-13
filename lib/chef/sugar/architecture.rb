@@ -20,7 +20,7 @@ class Chef
       extend self
 
       # these helpers have been moved to core-chef
-      unless Gem::Requirement.new(">= 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
         #
         # Determine if the current architecture is 64-bit
         #
@@ -136,7 +136,7 @@ class Chef
     end
 
     module DSL
-      unless Gem::Requirement.new(">= 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 15.4.70").satisfied_by?(Gem::Version.new(Chef::VERSION))
         # @see Chef::Sugar::Architecture#_64_bit?
         def _64_bit?; Chef::Sugar::Architecture._64_bit?(node); end
 
