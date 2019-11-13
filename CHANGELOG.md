@@ -2,35 +2,32 @@
 
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
-<!-- latest_release 5.1.8 -->
-## [v5.1.8](https://github.com/chef/chef-sugar/tree/v5.1.8) (2019-11-12)
-
-#### Merged Pull Requests
-- Deprecate chef-sugar node API [#16](https://github.com/chef/chef-sugar/pull/16) ([lamont-granquist](https://github.com/lamont-granquist))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.0.1 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Deprecate chef-sugar node API [#16](https://github.com/chef/chef-sugar/pull/16) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.1.8 -->
-- Get the tests green [#17](https://github.com/chef/chef-sugar/pull/17) ([tas50](https://github.com/tas50)) <!-- 5.1.7 -->
-- Move test deps to the Gemfile [#15](https://github.com/chef/chef-sugar/pull/15) ([tas50](https://github.com/tas50)) <!-- 5.1.6 -->
-- Additional Chef-15 greenification [#13](https://github.com/chef/chef-sugar/pull/13) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.1.5 -->
-- Fix metadata.rb version updatig logic and use SPDX compliant license strings [#14](https://github.com/chef/chef-sugar/pull/14) ([tas50](https://github.com/tas50)) <!-- 5.1.4 -->
-- Switch gemfile back to chef-sugar [#12](https://github.com/chef/chef-sugar/pull/12) ([tas50](https://github.com/tas50)) <!-- 5.1.3 -->
-- Use Expeditor to set the version in the metadata.rb file [#11](https://github.com/chef/chef-sugar/pull/11) ([tas50](https://github.com/tas50)) <!-- 5.1.2 -->
-- Beginning of chef-sugar deprecation [#10](https://github.com/chef/chef-sugar/pull/10) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.1.1 -->
-- Add github templates and a code of conduct [#9](https://github.com/chef/chef-sugar/pull/9) ([tas50](https://github.com/tas50)) <!-- 5.1.0 -->
-- Wire up Expeditor and support both chef-sugar and chef-sugar-ng [#8](https://github.com/chef/chef-sugar/pull/8) ([tas50](https://github.com/tas50)) <!-- 5.0.4 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.1.8](https://github.com/chef/chef-sugar/tree/v5.1.8) (2019-11-13)
+
+#### Merged Pull Requests
+- Wire up Expeditor and support both chef-sugar and chef-sugar-ng [#8](https://github.com/chef/chef-sugar/pull/8) ([tas50](https://github.com/tas50))
+- Add github templates and a code of conduct [#9](https://github.com/chef/chef-sugar/pull/9) ([tas50](https://github.com/tas50))
+- Beginning of chef-sugar deprecation [#10](https://github.com/chef/chef-sugar/pull/10) ([lamont-granquist](https://github.com/lamont-granquist))
+- Use Expeditor to set the version in the metadata.rb file [#11](https://github.com/chef/chef-sugar/pull/11) ([tas50](https://github.com/tas50))
+- Switch gemfile back to chef-sugar [#12](https://github.com/chef/chef-sugar/pull/12) ([tas50](https://github.com/tas50))
+- Fix metadata.rb version updatig logic and use SPDX compliant license strings [#14](https://github.com/chef/chef-sugar/pull/14) ([tas50](https://github.com/tas50))
+- Additional Chef-15 greenification [#13](https://github.com/chef/chef-sugar/pull/13) ([lamont-granquist](https://github.com/lamont-granquist))
+- Move test deps to the Gemfile [#15](https://github.com/chef/chef-sugar/pull/15) ([tas50](https://github.com/tas50))
+- Get the tests green [#17](https://github.com/chef/chef-sugar/pull/17) ([tas50](https://github.com/tas50))
+- Deprecate chef-sugar node API [#16](https://github.com/chef/chef-sugar/pull/16) ([lamont-granquist](https://github.com/lamont-granquist))
+<!-- latest_stable_release -->
+
 ## v5.0.1 (2019-03-13)
 
 - Modifies the behavior of `systemd?` so that it works equally well on physical/virtual
 machines as well as within containers.
-<!-- latest_stable_release -->
 
 ## v5.0.0 (2018-12-26)
 
