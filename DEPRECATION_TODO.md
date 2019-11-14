@@ -9,7 +9,7 @@ TASKS in order:
 * pull virtualization.rb into core-chef
 * deprecate ip.rb with no replacement (although maybe a new ohai attribute?)
 * deprecate kernel.rb with no replacement
-* deprecate node.rb with no replacement
+* ~~deprecate node.rb with no replacement~~
 * deprecate ruby.rb with no replacement
 * determine what to do about filters.rb
 * determine what to do about remaining platform.rb
