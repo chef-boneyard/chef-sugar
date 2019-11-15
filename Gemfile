@@ -14,6 +14,11 @@ group :test do
   else
     gem "chefspec"
   end
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.4")
+    gem "rubyzip", "< 2"
+  else
+    gem "rubyzip"
+   end
   gem "rake"
 end
 
