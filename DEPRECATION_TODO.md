@@ -2,7 +2,7 @@
 
 TASKS in order:
 
-* pull cloud.rb into core-chef
+* ~~pull cloud.rb into core-chef~~
 * pull data_bag.rb into core-chef
 * pull run_context.rb into core-chef
 * pull vagrant.rb into core-chef
