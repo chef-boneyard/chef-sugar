@@ -4,7 +4,7 @@ TASKS in order:
 
 * ~~pull cloud.rb into core-chef~~
 * pull data_bag.rb into core-chef
-* pull run_context.rb into core-chef
+* ~~pull run_context.rb into core-chef~~
 * pull vagrant.rb into core-chef
 * pull virtualization.rb into core-chef
 * deprecate ip.rb with no replacement (although maybe a new ohai attribute?)
@@ -20,9 +20,7 @@ NOTES on files:
 
 architecture.rb is COMPLETED
 
-cloud.rb tasks:
-
-* pull the cloud helpers into core-chef.
+cloud.rb is COMPLETED
 
 constraint.rb / constraint_dsl.rb tasks:
 
@@ -74,9 +72,7 @@ ruby.rb tasks:
 
 * needs to be deprecated with no replacement (nobody has used it since ruby 2.0, so its clearly not being used)
 
-run_context.rb tasks: (actually just a trivial `include_recipe?` helper)
-
-* trivial to pull this into core-chef
+run_context.rb is COMPLETED
 
 shell.rb: (collection of helpers including `which`)
 
