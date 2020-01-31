@@ -5,8 +5,8 @@ TASKS in order:
 * ~~pull cloud.rb into core-chef~~
 * pull data_bag.rb into core-chef
 * ~~pull run_context.rb into core-chef~~
-* pull vagrant.rb into core-chef
-* pull virtualization.rb into core-chef
+* ~~pull vagrant.rb into core-chef~~
+* ~~pull virtualization.rb into core-chef~~
 * deprecate ip.rb with no replacement (although maybe a new ohai attribute?)
 * deprecate kernel.rb with no replacement
 * ~~deprecate node.rb with no replacement~~
@@ -78,11 +78,7 @@ shell.rb: (collection of helpers including `which`)
 
 * TBD
 
-vagrant.rb:
+vagrant.rb is COMPLETED
 
-* should pull this into core-chef
-
-virtualization.rb:
-
-* should pull this into core-chef
+virtualization.rb is COMPLETED
 
