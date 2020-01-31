@@ -3,14 +3,20 @@
 [![Gem Version](http://img.shields.io/gem/v/chef-sugar.svg?style=flat-square)][gem]
 [![Build status](https://badge.buildkite.com/f44140e4898b4935bfc3bba523efc2a7592d7c9a1bae3faf5c.svg?branch=master)](https://buildkite.com/chef-oss/chef-chef-sugar-master-verify)
 
-Chef Sugar is a Gem & Chef Recipe that includes series of helpful syntactic sugars on top of the Chef core and other resources to make a cleaner, more lean recipe DSL, enforce DRY principles, and make writing Chef recipes an awesome and fun experience!
+# CHEF SUGAR DEPRECATION WARNING
+
+Chef Sugar is in the process of being migrated into Chef Infra Client 15 and Chef Infra Client 16.  The bulk of that work has already
+been completed.  After it is completed there will be no need for this cookbook and gem, and it will no longer be supported.  No
+issues or patches are being accepted at this time.
+
+The final major version release of Chef Sugar will raise and will not be functional.  Users on Chef Infra Client <= 14 or old versions of 15
+will need to have a pessimistic pin on chef-sugar, or simply upgrade.
 
 ## Requirements
 
 ### Platforms
 
 - any platform
-
 
 ### Chef
 
