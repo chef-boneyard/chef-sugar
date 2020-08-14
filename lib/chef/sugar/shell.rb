@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
-require 'mixlib/shellout'
-require 'pathname'
+require 'mixlib/shellout' unless defined?(Mixlib::ShellOut)
+require 'pathname' unless defined?(Pathname)
 
 class Chef
   module Sugar
