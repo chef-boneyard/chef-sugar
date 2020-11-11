@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Chef::Sugar::Shell do
-  describe '#which' do
+  describe '#which', :pre_chef16_only do
     it 'returns the first executable matching the command' do
       allow(File).to receive(:executable?).and_return(false)
       allow(File).to receive(:executable?).with('/usr/bin/mongo').and_return(true)
@@ -46,7 +46,7 @@ describe Chef::Sugar::Shell do
     end
 
     it 'returns false if the given binary does not exist' do
-      allow(File).to receive(:executable?).and_return(false)
+      allow(described_class).to receive(:which).with('node').and_return(nil)
       expect(described_class.installed?('node')).to be false
     end
   end
