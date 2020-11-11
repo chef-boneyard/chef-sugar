@@ -22,26 +22,29 @@ class Chef
     module Shell
       extend self
 
-      #
-      # Finds a command in $PATH
-      #
-      # @param [String] cmd
-      #   the command to find
-      #
-      # @return [String, nil]
-      #
-      def which(cmd)
-        if Pathname.new(cmd).absolute?
-          File.executable?(cmd) ? cmd : nil
-        else
-          paths = ENV['PATH'].split(::File::PATH_SEPARATOR) + %w(/bin /usr/bin /sbin /usr/sbin)
+      # this helpers have been moved to core chef
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 16.0.257").satisfied_by?(Gem::Version.new(Chef::VERSION))
+        #
+        # Finds a command in $PATH
+        #
+        # @param [String] cmd
+        #   the command to find
+        #
+        # @return [String, nil]
+        #
+        def which(cmd)
+          if Pathname.new(cmd).absolute?
+            File.executable?(cmd) ? cmd : nil
+          else
+            paths = ENV['PATH'].split(::File::PATH_SEPARATOR) + %w(/bin /usr/bin /sbin /usr/sbin)
 
-          paths.each do |path|
-            possible = File.join(path, cmd)
-            return possible if File.executable?(possible)
+            paths.each do |path|
+              possible = File.join(path, cmd)
+              return possible if File.executable?(possible)
+            end
+
+            nil
           end
-
-          nil
         end
       end
 
@@ -128,8 +131,11 @@ class Chef
     end
 
     module DSL
-      # @see Chef::Sugar::Shell#which
-      def which(cmd); Chef::Sugar::Shell.which(cmd); end
+      # this helpers have been moved to core chef
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 16.0.257").satisfied_by?(Gem::Version.new(Chef::VERSION))
+        # @see Chef::Sugar::Shell#which
+        def which(cmd); Chef::Sugar::Shell.which(cmd); end
+      end
 
       # @see Chef::Sugar::Shell#dev_null
       def dev_null; Chef::Sugar::Shell.dev_null(node); end
