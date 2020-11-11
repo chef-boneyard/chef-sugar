@@ -24,5 +24,5 @@ RSpec.configure do |config|
   # ChefSpec configuration
   config.log_level = :fatal
 
-  config.filter_run_excluding pre_chef16_only: true if Gem::Requirement.new(">= 16.0.257").satisfied_by?(Gem::Version.new(Chef::VERSION))
+  config.filter_run_excluding pre_chef16_only: Gem::Requirement.new(">= 16.0.257").satisfied_by?(Gem::Version.new(Chef::VERSION))
 end
