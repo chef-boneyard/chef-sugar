@@ -1,6 +1,7 @@
 require 'rspec'
 require 'chefspec'
 require 'chef/sugar'
+require 'chef/version'
 
 require_relative 'support/shared_examples'
 
@@ -22,4 +23,6 @@ RSpec.configure do |config|
 
   # ChefSpec configuration
   config.log_level = :fatal
+
+  config.filter_run_excluding pre_chef16_only: Gem::Requirement.new(">= 16.0.257").satisfied_by?(Gem::Version.new(Chef::VERSION))
 end
