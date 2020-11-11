@@ -22,7 +22,7 @@ class Chef
     module Shell
       extend self
 
-      # this helpers have been moved to core chef
+      # this helper has been moved to core chef
       if !defined?(Chef::VERSION) || Gem::Requirement.new("< 16.0.257").satisfied_by?(Gem::Version.new(Chef::VERSION))
         #
         # Finds a command in $PATH
