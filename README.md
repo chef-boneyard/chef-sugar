@@ -5,12 +5,7 @@
 
 # CHEF SUGAR DEPRECATION WARNING
 
-Chef Sugar is in the process of being migrated into Chef Infra Client 15 and Chef Infra Client 16.  The bulk of that work has already
-been completed.  After it is completed there will be no need for this cookbook and gem, and it will no longer be supported.  No
-issues or patches are being accepted at this time.
-
-The final major version release of Chef Sugar will raise and will not be functional.  Users on Chef Infra Client <= 14 or old versions of 15
-will need to have a pessimistic pin on chef-sugar, or simply upgrade.
+Chef Sugar functionality has been migrated into Chef Infra Client 16. There is no longer a need for this cookbook and gem for most use cases and we will not be maintaining the project further at this point. No issues or patches are being accepted at this time.
 
 ## Requirements
 
