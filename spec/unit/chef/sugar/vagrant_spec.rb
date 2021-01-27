@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Chef::Sugar::Vagrant do
   it_behaves_like 'a chef sugar'
 
-  describe '#vagrant?' do
+  describe '#vagrant?', :pre_chef16_only do
     it 'returns true when the machine is on vagrant' do
       node = { 'vagrant' => {} }
       expect(described_class.vagrant?(node)).to be true

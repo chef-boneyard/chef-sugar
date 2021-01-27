@@ -19,59 +19,64 @@ class Chef
     module Vagrant
       extend self
 
-      #
-      # Determine if the current node is running in vagrant mode.
-      #
-      # @param [Chef::Node] node
-      #
-      # @return [Boolean]
-      #   true if the machine is currently running vagrant, false
-      #   otherwise
-      #
-      def vagrant?(node)
-        vagrant_key?(node) || vagrant_domain?(node) || vagrant_user?(node)
-      end
+      # these helpers have been moved to core chef
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 16.0.257").satisfied_by?(Gem::Version.new(Chef::VERSION))
+        #
+        # Determine if the current node is running in vagrant mode.
+        #
+        # @param [Chef::Node] node
+        #
+        # @return [Boolean]
+        #   true if the machine is currently running vagrant, false
+        #   otherwise
+        #
+        def vagrant?(node)
+          vagrant_key?(node) || vagrant_domain?(node) || vagrant_user?(node)
+        end
 
-      private
+        private
 
-      #
-      # Check if the +vagrant+ key exists on the +node+ object. This key is no
-      # longer populated by vagrant, but it is kept around for legacy purposes.
-      #
-      # @param (see vagrant?)
-      # @return (see vagrant?)
-      #
-      def vagrant_key?(node)
-        node.key?('vagrant')
-      end
+        #
+        # Check if the +vagrant+ key exists on the +node+ object. This key is no
+        # longer populated by vagrant, but it is kept around for legacy purposes.
+        #
+        # @param (see vagrant?)
+        # @return (see vagrant?)
+        #
+        def vagrant_key?(node)
+          node.key?('vagrant')
+        end
 
-      #
-      # Check if "vagrantup.com" is included in the node's domain. Technically,
-      # this would make Chef Sugar falsely detect +vagrant?+ on any of
-      # Hashicorp's servers. But if that edge case becomes a serious problem,
-      # @mitchellh has my phone number.
-      #
-      # @param (see vagrant?)
-      # @return (see vagrant?)
-      #
-      def vagrant_domain?(node)
-        node.key?('domain') && !node['domain'].nil? && node['domain'].include?('vagrantup.com')
-      end
+        #
+        # Check if "vagrantup.com" is included in the node's domain. Technically,
+        # this would make Chef Sugar falsely detect +vagrant?+ on any of
+        # Hashicorp's servers. But if that edge case becomes a serious problem,
+        # @mitchellh has my phone number.
+        #
+        # @param (see vagrant?)
+        # @return (see vagrant?)
+        #
+        def vagrant_domain?(node)
+          node.key?('domain') && !node['domain'].nil? && node['domain'].include?('vagrantup.com')
+        end
 
-      #
-      # Check if the system contains a +vagrant+ user.
-      #
-      # @param (see vagrant?)
-      # @return (see vagrant?)
-      #
-      def vagrant_user?(node)
-        node.key?('etc') && node['etc'].key?('passwd') && node['etc']['passwd'].key?('vagrant')
+        #
+        # Check if the system contains a +vagrant+ user.
+        #
+        # @param (see vagrant?)
+        # @return (see vagrant?)
+        #
+        def vagrant_user?(node)
+          node.key?('etc') && node['etc'].key?('passwd') && node['etc']['passwd'].key?('vagrant')
+        end
       end
     end
 
     module DSL
-      # @see Chef::Sugar::Vagrant#vagrant?
-      def vagrant?; Chef::Sugar::Vagrant.vagrant?(node); end
+      if !defined?(Chef::VERSION) || Gem::Requirement.new("< 16.0.257").satisfied_by?(Gem::Version.new(Chef::VERSION))
+        # @see Chef::Sugar::Vagrant#vagrant?
+        def vagrant?; Chef::Sugar::Vagrant.vagrant?(node); end
+      end
     end
   end
 end
